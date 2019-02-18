@@ -33,6 +33,6 @@ def crawl(url):
                 newurl = "https://da.wikipedia.org" + href
 
 
-
 searchstring = input("What would you like to search for? ")
-crawl(searchstring)
+formatsearch = searchstring.replace(" ", "_")
+crawl(formatsearch)
