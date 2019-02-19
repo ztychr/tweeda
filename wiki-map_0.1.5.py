@@ -4,7 +4,9 @@ import urllib.parse
 
 def crawl():
 
-    searchstring = input('Enter your searchstring: ')
+    rawinput = input('Enter your searchstring: ')
+
+    searchstring = rawinput.replace(" ", "_")
     r = requests.get('https://wikipedia.org/wiki/' + searchstring) # hent url med en webhandler
 
     bs = BeautifulSoup(r.text, features='lxml') # lav
@@ -14,7 +16,8 @@ def crawl():
 
     for i in bs.find_all('p'): # find alle <p> tags på en wikipedia-side
         for j in i.find_all('a'): # find alle <a> tags i <p> tags
-            li = j.get('href') # find href værdien i alle <a> tags
+            href = j.get('href') # find href værdien i alle <a> tags
+            li = href.replace(" ", "_")
 
             title = j.get('title') # laver en variable der fetcher titlen på linket
             links = 'https://wikipedia.org' + li # laver en variable der indeholder det fulde link
@@ -23,6 +26,8 @@ def crawl():
                 urls.append(links)
                 titles.append(title)
 
+
+    print("root url: " + r.url)
     print('URL\'s  :  ' + str((len(urls)))) # print længde af liste
     print('Titles :  ' + str((len(titles))) + '\n') # print længde af liste
 
