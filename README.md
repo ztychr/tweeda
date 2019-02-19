@@ -9,6 +9,7 @@ Program
 - Lav try exception på user input
 - Lav url decoder
 - Lav interface msg
+- Ide til GUI map (Jon)
 
 Planning
 - SRUM
