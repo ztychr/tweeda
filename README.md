@@ -3,9 +3,13 @@
 
 
 #### To do list 0.1.4
+Program
+- Opret mapper hvori data kan skrives som filer
+- Lav user input
+- Lav try exception på user input
+- Lav url decoder
+- Lav interface msg
 
-- opret mapper hvori data kan skrives som filer
-- lav user input
-- lav try exception på user input
-- lav url decoder
-- lav interface msg
+Planning
+- SRUM
+- Tidsplan
