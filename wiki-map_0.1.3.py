@@ -27,5 +27,5 @@ print(len_urls)
 print(len_titles)
 
 
-print(enumerate(urls),  urls)
-print(enumerate(titles),titles)
+print(urls)
+print(titles)
