@@ -22,3 +22,5 @@ for i in bs.find_all('p'):
 
         for x in urls:
             print(x)
+            
+            
