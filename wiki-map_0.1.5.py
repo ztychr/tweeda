@@ -31,7 +31,8 @@ def crawl():
         print('URL\'s  :  ' + str((len(urls)))) # print længde af liste
         print('Titles :  ' + str((len(titles))) + '\n') # print længde af liste
 
-        if not titles:
+        # tester om der kan scrapes noget fra url.
+        if not titles and not urls:
             print('No articles were found.')
             continue
         else:
