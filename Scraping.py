@@ -1,14 +1,32 @@
+
 from bs4 import BeautifulSoup
 import requests
 import Post
 
+
+
+def swap(list, i, j):
+    temp = list[i]
+    list[i] = list[j]
+    list[j] = temp
+
+
+
 class Scraping:
+
+
+
+
+
     def __init__(self, tHandle, postamounts):
 
         self.tHandle = tHandle
         self.postamounts = postamounts
+
+
         self.r = requests.get('https://twitter.com/' + tHandle)
 
+# the method that actually scrapes our data. Needs to be run before any other methods are
     def scrape_data(self):
         self.bs = BeautifulSoup(self.r.content, 'lxml')
         self.find_tweets = self.bs.find_all('div', {'class': 'tweet'})
@@ -41,25 +59,61 @@ class Scraping:
                 self.temp_tweet = Post.tweet(self.userName, self.likes, self.replys, self.retweets, self.userMessage)
                 self.tweetlist.append(self.temp_tweet)
 
-               # if self.context:
-               # print("context:", self.context)
-               # print(self.temp_tweet.get_userName(), self.timeTweeted)
-               # print("length of message: " + str(self.temp_tweet.lenMessage))
-               # print(self.temp_tweet.get_message())
-               # print("Lkes: " + str(self.temp_tweet.get_likes()))
-               # print("retweets: " + str(self.temp_tweet.get_retweets()))
-               # print("replys: " + str(self.temp_tweet.get_replys()))
-               # print("amount of mentions in post: " + str(self.temp_tweet.mentions))
-               # print("amount of hastags in this post" + str(self.temp_tweet.hastags))
-               # print()
 
 
         else:
             print("User not found")
 
+
+
+# the method that gets our list of posts. scrape_data() needs to be run before this metho
     def get_posts(self):
         if self.tweetlist:
 
             return self.tweetlist
         else:
             return "run scrapedata first"
+
+
+    #bubblesort algorthm that sorts low-high. The attribute that you would like to sort is passed as parameter
+    def bubble_sort(self, attrs):
+        try:
+            if attrs != 'message' and attrs != 'userName':
+                for i in range(0, len(self.tweetlist) - 1):
+                    for j in range(0, len(self.tweetlist) - 1 - i, 1):
+                        attribute = getattr(self.tweetlist[j], attrs)
+                        attribute1 = getattr(self.tweetlist[j+1], attrs)
+
+                        if attribute > attribute1:
+                            swap(self.tweetlist, j, j + 1)
+
+                return self.tweetlist;
+            else:
+                return print("you cant sort on message or username \n those are strings")
+        except:
+            return print("the attribute you typed is not available for posts \n maybe you typed wrong?")
+
+
+
+    #bubblesort algorithm that sorts high-low. the attribute that you would like to sort on is passed as parameter
+    #
+
+    def bubble_sort_reverse(self, attrs):
+
+        try:
+
+            if attrs != 'message' and attrs != 'userName':
+                for i in range(0, len(self.tweetlist) - 1):
+                    for j in range(0, len(self.tweetlist) - 1 - i, 1):
+                        attribute = getattr(self.tweetlist[j], attrs)
+                        attribute1 =getattr(self.tweetlist[j+1], attrs)
+                        if attribute < attribute1:
+                            swap(self.tweetlist, j, j + 1)
+                return self.tweetlist
+            else:
+                return print("you cant sort on message or username \n those are strings")
+
+        except:
+            return print("the attribute you typed is not available for posts \n maybe you typed wrong?")
+
+
