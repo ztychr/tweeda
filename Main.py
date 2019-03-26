@@ -3,9 +3,10 @@ from Statistical import *
 
 
 tHandle = input("Enter twitter handle: ")
-postamounts = input("Enter amount of tweets:  ")
+postamountsInput = input("Enter amount of tweets:  ")
+postamountsInt = int(postamountsInput)
 
-Scraping.Scraping(tHandle, postamounts)
+ourScrape = Scraping.Scraping(tHandle, postamountsInt)
 
 
 #reversSortPost = newscrape.bubble_sort_reverse("likes")
