@@ -38,3 +38,4 @@ native_deviation = statistical.statistical.native_sd(listofposts, 'likes')
 #for i in bubblesort:
  #   print(i.print_all())
 
+
