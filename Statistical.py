@@ -1,6 +1,5 @@
-import math
-import statistics
-
+from math import *
+from statistics import *
 
 class statistical:
     @classmethod
@@ -98,6 +97,7 @@ class statistical:
         except:
             return print("the attribute you typed is not available for posts \n maybe you typed wrong?")
 
+
     @classmethod
     # getting standard deviation of the dataset, uses get_average() from above.
     # standard deviation can later be used to provide further analysis
@@ -105,17 +105,10 @@ class statistical:
 
         # average = self.get_average(List, 'likes')
         listLen = len(List)
-
-
-
-
         # calc of mean
         # skal udskiftes med getAverage()
         average = self.get_average(List, attrs)
-
         print("devagerage" + str(average))
-
-
         # getting differences between datapoints and calculated average
         #working
         differences = []
@@ -135,32 +128,25 @@ class statistical:
 
         AverageSquare = sumofSquared/listLen
         print(AverageSquare)
-
-
         deviation = math.sqrt(AverageSquare)
-
         print("deviation: " + str(deviation))
 
         return deviation
-
-
         #  return deviation
-
         # get square root of squaredMean = standard_deviation
+
 
     # using an already defined standard deviationmeasurement
     # for testing my own method
     @classmethod
 
     def native_sd(self, List, attrs):
-
         tempList = []
         lenList = len(List)
+        
         for i in range(0,lenList):
             attribute = getattr(List[i], attrs)
             tempList.append(attribute)
-
-
 
         stdev = statistics.pstdev(tempList)
         print("standard dev:" + str(stdev))

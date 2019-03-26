@@ -3,8 +3,6 @@
 
 class tweet:
 
-
-
     def __init__(self, userName, likes, replys, retweets, message):
         self.userName = userName
         self.likes = likes
@@ -14,7 +12,6 @@ class tweet:
         self.lenMessage = len(self.message)
         self.mentions = self.message.count('@')
         self.hastags = self.message.count('#')
-
 
     def get_userName(self):
         return self.userName
@@ -30,7 +27,6 @@ class tweet:
         return self.lenMessage
 
     #simply a method to print all attribute of an object
-
     def print_all(self):
         print("username: " + self.userName)
         print("likes: " + str(self.likes))
