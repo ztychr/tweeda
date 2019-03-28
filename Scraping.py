@@ -10,7 +10,6 @@ def swap(list, i, j):
 
     print(" ")
 
-# hej verden
 
 class Scraping:
 
