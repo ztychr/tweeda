@@ -8,6 +8,10 @@ def swap(list, i, j):
     list[i] = list[j]
     list[j] = temp
 
+    print(" ")
+
+# hej verden
+
 class Scraping:
 
     def __init__(self, tHandle, postamounts):
