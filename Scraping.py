@@ -4,6 +4,10 @@ import requests
 import Post
 
 
+def swap(list, i, j):
+    temp = list[i]
+    list[i] = list[j]
+    list[j] = temp
 
 class Scraping:
 
@@ -59,10 +63,7 @@ class Scraping:
 
     #Swap() is used inside our sorting methods
 
-    def swap(list, i, j):
-        temp = list[i]
-        list[i] = list[j]
-        list[j] = temp
+
 
     # bubblesort algorthm that sorts low-high. The attribute that you would like to sort is passed as parameter
     def bubble_sort(self, attrs):
@@ -74,7 +75,7 @@ class Scraping:
                         attribute1 = getattr(self.tweetlist[j+1], attrs)
 
                         if attribute > attribute1:
-                            self.swap(self.tweetlist, j, j + 1)
+                            swap(self.tweetlist, j, j + 1)
                 return self.tweetlist;
             else:
                 return print("you cant sort on message or username \n those are strings")
@@ -91,7 +92,7 @@ class Scraping:
                         attribute = getattr(self.tweetlist[j], attrs)
                         attribute1 =getattr(self.tweetlist[j+1], attrs)
                         if attribute < attribute1:
-                            self.swap(self.tweetlist, j, j + 1)
+                            swap(self.tweetlist, j, j + 1)
                 return self.tweetlist
             else:
                 return print("you cant sort on message or username \n those are strings")

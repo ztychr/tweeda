@@ -1,4 +1,4 @@
-from math import *
+import math
 import statistics
 
 class statistical:
@@ -26,9 +26,7 @@ class statistical:
         half = lenght / 2
         if lenght % 2 == 0:
             middle = int(half)
-            print("middle" + str(middle))
             middle1 = int(half + 1)
-            print("middle1" + str(middle1))
             attribute = getattr(list[middle], attrs)
             attribute1 = getattr(list[middle1], attrs)
             median = (attribute + attribute1) / 2
