@@ -1,4 +1,3 @@
-
 from bs4 import BeautifulSoup
 import requests
 import Post
@@ -8,6 +7,7 @@ def swap(list, i, j):
     temp = list[i]
     list[i] = list[j]
     list[j] = temp
+
 
 class Scraping:
 
@@ -32,17 +32,22 @@ class Scraping:
                 self.userName = self.header.find('a', {
                     'class': 'account-group js-account-group js-action-profile js-user-profile-link js-nav'}).text.replace(
                     "\n", " ").strip()
-                self.timeTweeted = self.header.find('a', {'class': 'tweet-timestamp js-permalink js-nav js-tooltip'}).find(
+                self.timeTweeted = self.header.find('a',
+                                                    {'class': 'tweet-timestamp js-permalink js-nav js-tooltip'}).find(
                     'span').text.replace("\n", " ").strip()
 
-                self.userMessage = self.content.find('div', {'class': 'js-tweet-text-container'}).text.replace("\n", " ").strip()
+                self.userMessage = self.content.find('div', {'class': 'js-tweet-text-container'}).text.replace("\n",
+                                                                                                               " ").strip()
 
                 self.footer = self.content.find('div', {'class': 'stream-item-footer'})
 
                 self.statistical = self.footer.find('div', {'class': 'ProfileTweet-actionCountList u-hiddenVisually'})
-                self.likeSpan = self.statistical.find('span',{'class': 'ProfileTweet-action--favorite u-hiddenVisually'}).text.replace(  "\n", " ").strip()
-                self.retweetspan = self.statistical.find('span',{'class': 'ProfileTweet-action--retweet u-hiddenVisually'}).text.replace("\n", " ").strip()
-                self.replyspan = self.statistical.find('span',{'class': 'ProfileTweet-action--reply u-hiddenVisually'}).text.replace("\n", " ").strip()
+                self.likeSpan = self.statistical.find('span', {
+                    'class': 'ProfileTweet-action--favorite u-hiddenVisually'}).text.replace("\n", " ").strip()
+                self.retweetspan = self.statistical.find('span', {
+                    'class': 'ProfileTweet-action--retweet u-hiddenVisually'}).text.replace("\n", " ").strip()
+                self.replyspan = self.statistical.find('span', {
+                    'class': 'ProfileTweet-action--reply u-hiddenVisually'}).text.replace("\n", " ").strip()
 
                 self.likes = int(''.join(i for i in self.likeSpan if i.isdigit()))
                 self.retweets = int(''.join(i for i in self.retweetspan if i.isdigit()))
@@ -61,9 +66,7 @@ class Scraping:
         else:
             return "run scrapedata first"
 
-    #Swap() is used inside our sorting methods
-
-
+    # Swap() is used inside our sorting methods
 
     # bubblesort algorthm that sorts low-high. The attribute that you would like to sort is passed as parameter
     def bubble_sort(self, attrs):
@@ -72,7 +75,7 @@ class Scraping:
                 for i in range(0, len(self.tweetlist) - 1):
                     for j in range(0, len(self.tweetlist) - 1 - i, 1):
                         attribute = getattr(self.tweetlist[j], attrs)
-                        attribute1 = getattr(self.tweetlist[j+1], attrs)
+                        attribute1 = getattr(self.tweetlist[j + 1], attrs)
 
                         if attribute > attribute1:
                             swap(self.tweetlist, j, j + 1)
@@ -90,7 +93,7 @@ class Scraping:
                 for i in range(0, len(self.tweetlist) - 1):
                     for j in range(0, len(self.tweetlist) - 1 - i, 1):
                         attribute = getattr(self.tweetlist[j], attrs)
-                        attribute1 =getattr(self.tweetlist[j+1], attrs)
+                        attribute1 = getattr(self.tweetlist[j + 1], attrs)
                         if attribute < attribute1:
                             swap(self.tweetlist, j, j + 1)
                 return self.tweetlist

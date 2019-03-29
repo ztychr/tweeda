@@ -1,7 +1,6 @@
 from Scraping import Scraping
 from Statistical import statistical
 
-
 # Først laver initialiserer man objektet:
 newscrape = Scraping("realdonaldtrump", 10)
 
