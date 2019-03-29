@@ -1,5 +1,5 @@
 from math import *
-from statistics import *
+import statistics
 
 class statistical:
     @classmethod
