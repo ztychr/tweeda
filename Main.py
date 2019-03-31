@@ -41,5 +41,5 @@ averagelikes = statistical.get_average(sortedList_likes, 'likes')
 #deviation = statistical.standard_deviation(allpost, 'likes')
 
 
-Profanity.search_word(sortedList_likes, "Mexico") # How many times does 'word' appear in the scraped list
+WordSearch.search_word(sortedList_likes, "Mexico") # How many times does 'word' appear in the scraped list
 
