@@ -1,7 +1,7 @@
 import profanity
 
 
-class Profanity:
+class WordSearch:
 
 
   # return amount of cursewords
@@ -14,4 +14,4 @@ class Profanity:
             message = getattr(word, 'message')
             if message.__contains__(searchword):
                 amounts = amounts + 1
-        return print("all the posts have the word: " + searchword + " " + str(amounts) + " times" )
+        return print("The word " + "'" + searchword + "'" + " appears " + str(amounts) + " times in the posts scraped")
