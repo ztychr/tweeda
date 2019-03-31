@@ -43,5 +43,7 @@ for posts in sortedList_likes:
 
 WordSearch.search_word(sortedList_likes, "Mexico") # How many times does 'word' appear in the scraped list
 
-WordSearch.word_counter(sortedList_likes, "Mexico")
+#WordSearch.word_counter(sortedList_likes)
+
+#WordSearch.word_counter2(sortedList_likes)
 
