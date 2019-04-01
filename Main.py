@@ -16,8 +16,8 @@ allpost = newscrape.get_posts()
 
 #Hvis jeg gerne vil have sorteret listen fra høj-lav, på attributen 'likes' gør jeg således:
 sortedList_likes = newscrape.bubble_sort('likes')
-for posts in sortedList_likes:
-    posts. print_all()
+#for posts in sortedList_likes:
+    #posts. print_all()
 
 #Hvis jeg gerne vil sortere den anden vej rundt kalder jeg i stedet bubble_sort_reverse()
 # I det her tilfælde sorterer jeg bare på 'replys'
@@ -41,9 +41,12 @@ for posts in sortedList_likes:
 #deviation = statistical.standard_deviation(allpost, 'likes')
 
 # Missing a way to append the message to a list
-WordSearch.search_word(sortedList_likes, "Mexico") # How many times does 'word' appear in the scraped list
+#WordSearch.search_word(sortedList_likes, "Mexico") # How many times does 'word' appear in the scraped list
 
-WordSearch.word_counter(sortedList_likes)
+#WordSearch.word_counter(sortedList_likes)
 
 #WordSearch.word_counter2(sortedList_likes)
 
+listOfwords = WordSearch.word_correlation(sortedList_likes, 'likes', 'Citizenship')
+#for searchWord in listOfwords:
+    #searchWord.print_all()

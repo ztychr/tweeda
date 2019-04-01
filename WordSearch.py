@@ -1,5 +1,6 @@
 import collections
 import nltk.corpus
+from Statistical import statistical
 nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -13,25 +14,20 @@ class WordSearch:
     @classmethod
     def search_word(self, List, searchword):
         amounts = 0
-        newli = []
-
+        li = []
         for word in List:
             message = getattr(word, 'message')
             if message.__contains__(searchword):
                 amounts = amounts + 1
-                newli.append(message)
         return print("The word " + "'" + searchword + "'" + " appears " + str(amounts) + " times in the posts scraped \n")
-        print(newli)
 
     @classmethod
     def word_counter(self, List):
-        stopwords = ['the']
         for word in List:
             message = getattr(word, 'message')
-        split_it = message.split()  # split() returns list of all the words in the string
-        Counter = collections.Counter(split_it)  # Pass the split_it list to instance of Counter class.
-        most_occur = Counter.most_common(10)
-
+            split_it = message.split()  # split() returns list of all the words in the string
+            Counter = collections.Counter(split_it)  # Pass the split_it list to instance of Counter class.
+            most_occur = Counter.most_common(5)
         print(most_occur)
 
     @classmethod
@@ -52,3 +48,34 @@ class WordSearch:
                 most_occur = Counter.most_common(5)
         print(word_tokens)
         print(most_occur)
+
+    @classmethod
+    def word_correlation(self, List, attr, searchWord):
+        li = []
+        avg_attr = statistical.get_average(List, attr)
+        print(avg_attr , "Avg likes of all posts")
+
+        for posts in List:
+            message = getattr(posts, 'message')
+            if message.__contains__(searchWord):
+                li.append(posts)
+
+        newAvg_attr = statistical.get_average(li, attr)
+
+        if (newAvg_attr > avg_attr):
+            differenceInAttr = newAvg_attr-avg_attr
+            new = int(differenceInAttr)
+            print('Posts containing the word ' + "'" + searchWord + "'" + " has in average " + str(new) + " more " + attr)
+            print("")
+
+            return li
+
+        if(newAvg_attr < avg_attr):
+            differenceInAttr2 = avg_attr-newAvg_attr
+            new2 = int(differenceInAttr2)
+            print('Posts containing the word ' + "'" + searchWord + "'" + " has on average " + str(new2) + " less " + attr)
+            print("")
+
+            return li
+
+
