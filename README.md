@@ -1,5 +1,4 @@
-#
-Private CS Project
+# Private CS Project
 ### tweeda
 
 
@@ -7,8 +6,11 @@ Private CS Project
 Scrum at zube.oi connected with github
 
 
-### python3 dependencies (via pip3)
+### python3 libraries (via pip3)
 - bs4
 - requests
 - lxml
 - statistics
+- os
+- sys
+- json
