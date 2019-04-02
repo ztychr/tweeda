@@ -141,7 +141,7 @@ class statistical:
     def native_sd(self, List, attrs):
         tempList = []
         lenList = len(List)
-        
+
         for i in range(0,lenList):
             attribute = getattr(List[i], attrs)
             tempList.append(attribute)

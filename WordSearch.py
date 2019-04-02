@@ -1,10 +1,10 @@
 import collections
 import nltk.corpus
 from Statistical import statistical
-nltk.download('stopwords')
+nltk.download('stopwords', quiet=True)
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-nltk.download('punkt')
+nltk.download('punkt', quiet=True)
 
 
 class WordSearch:
@@ -77,5 +77,3 @@ class WordSearch:
             print("")
 
             return li
-
-

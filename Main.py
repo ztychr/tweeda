@@ -3,18 +3,12 @@ from Statistical import statistical
 from WordSearch import WordSearch
 from Organizer import Organizer
 
-
-
 # Først laver initialiserer man objektet:
-twitterhandle = input("Enter account to scrape: ")
+twitterhandle = input("\nEnter account to scrape: ")
 tweetamount = int(input("Enter amount of tweets: "))
-print("\n \n")
+print(" ")
 
 newscrape = Scraping(twitterhandle, tweetamount)
-
-# projektmappen skabes og en json fil skrives
-Organizer.create_project(twitterhandle)
-Organizer.write_file_json(twitterhandle)
 
 # Så kører man metoden scrape_data(), på sit objekt, så er scrapingen blevet udført:
 newscrape.scrape_data()
@@ -40,12 +34,10 @@ sortedList_likes = newscrape.bubble_sort('likes')
 #Listen skal være sortet når man skal have medianen, eller giver det ingen mening
 #medianlikes = statistical.get_median(sortedList_likes, 'likes')
 
-
 # Den her metode er måske lidt mere tricky.
 #Her får man frekvensen af forskellige mænngder af ting indenfor forskellige grupperinger
 # kan evt bruges til at lave et pindediagram
 #Reply_frequence = statistical.frequency_grouping(sortedList_likes, 'replys', 1000, 5000, 10000,20000, 50000)
-
 
 # Standardafvigelse af en bestemt attribut.
 #deviation = statistical.standard_deviation(allpost, 'likes')
@@ -56,6 +48,10 @@ sortedList_likes = newscrape.bubble_sort('likes')
 
 #WordSearch.word_counter2(sortedList_likes)
 
-listOfwords = WordSearch.word_correlation(sortedList_likes, 'likes', 'Citizenship')
+#listOfwords = WordSearch.word_correlation(sortedList_likes, 'likes', 'Citizenship')
 #for searchWord in listOfwords:
     #searchWord.print_all()
+
+# projektmappen skabes og en json fil skrives
+Organizer.create_project(twitterhandle)
+Organizer.write_file_json(allpost, twitterhandle)

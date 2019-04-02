@@ -3,6 +3,17 @@ import sys
 import json
 from Scraping import Scraping
 
+# realdonaldtrump
+
+def attributes_to_list(tweet):
+    a0 = getattr(tweet, "userName")
+    a1 = getattr(tweet, "likes")
+    a2 = getattr(tweet, "replys")
+    a3 = getattr(tweet, "retweets")
+    a4 = getattr(tweet, "message")
+
+    return a0, a1, a2, a3, a4
+
 class Organizer:
 
     @classmethod
@@ -13,30 +24,45 @@ class Organizer:
         try:
             os.makedirs(path)
         except OSError:
-            print ("Creation of the directory %s failed. Directory probably exists." % path)
+            print ("Directory %s was not created. \nDirectory probably exists. \n" % path)
         else:
-            print ("Successfully created the directory %s " % path)
+            print ("Directory %s created. \n" % path)
 
         #if not os.path.exists(path):
             #os.makedirs(path)
 
     @classmethod
-    def write_file_json(self, twitterhandle):
+    def write_file_json(self, listofposts, twitterhandle):
 
         path = os.getcwd() + "/" + twitterhandle
-
-        json_data = ['cat: grey', 'dog: brown', 'frog: green', 'mouse: white']
-        #json_data = Scraping.get_posts()
+        templist = []
 
         if not os.path.isfile(twitterhandle):
 
             outfile = os.path.join(path, twitterhandle+".json")
             f = open(outfile, 'w')
-            json.dump(json_data, f)
+
+            for item in listofposts:
+
+                all_attr = attributes_to_list(item)
+                dict = {
+                'username': all_attr[0],
+                'likes': all_attr[1],
+                'replys': all_attr[2],
+                'retweets': all_attr[3],
+                'message': all_attr[4],
+                }
+
+                templist.append(dict)
+
+            json.dump(templist, f)
+            #print(json.dumps(templist, sort_keys=True, indent=2))
             f.close()
 
+            print("Data dumped to " + twitterhandle + ".json \n")
+
         else:
-            print("File called " + twitterhandle + ".json already exists.")
+            print("File called " + twitterhandle + ".json already exists. \n")
 
         #with open(path, twitterhandle + '.json', 'w') as f:
         #    json.dump(json_data, f)
