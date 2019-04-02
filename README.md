@@ -12,3 +12,4 @@ Scrum at zube.oi connected with github
 - requests
 - lxml
 - statistics
+- Nltk (Linguistics)
