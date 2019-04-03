@@ -2,6 +2,8 @@ import os
 import sys
 import json
 from Scraping import Scraping
+import time
+import datetime
 
 # realdonaldtrump
 
@@ -34,12 +36,16 @@ class Organizer:
     @classmethod
     def write_file_json(self, listofposts, twitterhandle):
 
+        time = datetime.datetime.now().strftime("%y-%m-%d_%H:%M-")
+
+        print(time)
+
         path = os.getcwd() + "/" + twitterhandle
         templist = []
 
         if not os.path.isfile(twitterhandle):
 
-            outfile = os.path.join(path, twitterhandle+".json")
+            outfile = os.path.join(path, time + twitterhandle+".json")
             f = open(outfile, 'w')
 
             for item in listofposts:
@@ -59,10 +65,10 @@ class Organizer:
             #print(json.dumps(templist, sort_keys=True, indent=2))
             f.close()
 
-            print("Data dumped to " + twitterhandle + ".json \n")
+            print("Data dumped to " + time + twitterhandle + ".json \n")
 
         else:
-            print("File called " + twitterhandle + ".json already exists. \n")
+            print("File called " + time + twitterhandle + ".json already exists. \n")
 
         #with open(path, twitterhandle + '.json', 'w') as f:
         #    json.dump(json_data, f)
