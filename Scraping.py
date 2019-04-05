@@ -3,11 +3,6 @@ import requests
 import Post
 
 
-def swap(list, i, j):
-    temp = list[i]
-    list[i] = list[j]
-    list[j] = temp
-
 
 class Scraping:
 
@@ -66,38 +61,9 @@ class Scraping:
         else:
             return "run scrapedata first"
 
-    # Swap() is used inside our sorting methods
 
-    # bubblesort algorthm that sorts low-high. The attribute that you would like to sort is passed as parameter
-    def bubble_sort(self, attrs):
-        try:
-            if attrs != 'message' and attrs != 'userName':
-                for i in range(0, len(self.tweetlist) - 1):
-                    for j in range(0, len(self.tweetlist) - 1 - i, 1):
-                        attribute = getattr(self.tweetlist[j], attrs)
-                        attribute1 = getattr(self.tweetlist[j + 1], attrs)
 
-                        if attribute > attribute1:
-                            swap(self.tweetlist, j, j + 1)
-                return self.tweetlist;
-            else:
-                return print("you cant sort on message or username \n those are strings")
-        except:
-            return print("the attribute you typed is not available for posts \n maybe you typed wrong?")
 
-    # bubblesort algorithm that sorts high-low. the attribute that you would like to sort on is passed as parameter
-    def bubble_sort_reverse(self, attrs):
 
-        try:
-            if attrs != 'message' and attrs != 'userName':
-                for i in range(0, len(self.tweetlist) - 1):
-                    for j in range(0, len(self.tweetlist) - 1 - i, 1):
-                        attribute = getattr(self.tweetlist[j], attrs)
-                        attribute1 = getattr(self.tweetlist[j + 1], attrs)
-                        if attribute < attribute1:
-                            swap(self.tweetlist, j, j + 1)
-                return self.tweetlist
-            else:
-                return print("you cant sort on message or username \n those are strings")
-        except:
-            return print("the attribute you typed is not available for posts \n maybe you typed wrong?")
+
+

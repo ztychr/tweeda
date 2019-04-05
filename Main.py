@@ -2,6 +2,7 @@ from Scraping import Scraping
 from Statistical import statistical
 from WordSearch import WordSearch
 from Organizer import Organizer
+from Sorting import Sorting
 
 # Først laver initialiserer man objektet:
 twitterhandle = input("\nEnter account to scrape: ")
@@ -19,7 +20,9 @@ allpost = newscrape.get_posts()
 # Hvis man gerne vil have printet alle attibutter på alle objekter i listen, skal man bruge et forloop, til at gå igennem listen:
 
 #Hvis jeg gerne vil have sorteret listen fra høj-lav, på attributen 'likes' gør jeg således:
-sortedList_likes = newscrape.bubble_sort('likes')
+
+
+Sorted_likes = Sorting.bubble_sort(allpost, 'likes')
 #for posts in sortedList_likes:
 #posts. print_all()
 
