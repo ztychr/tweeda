@@ -6,10 +6,11 @@ from Sorting import Sorting
 
 # Først laver initialiserer man objektet:
 twitterhandle = input("\nEnter account to scrape: ")
-tweetamount = int(input("Enter amount of tweets: "))
+tweetamount = input("Enter amount of tweets: ")
+tweetamountInt = int(tweetamount)
 print(" ")
 
-newscrape = Scraping(twitterhandle, tweetamount)
+newscrape = Scraping(twitterhandle, tweetamountInt)
 
 # Så kører man metoden scrape_data(), på sit objekt, så er scrapingen blevet udført:
 newscrape.scrape_data()
@@ -23,6 +24,13 @@ allpost = newscrape.get_posts()
 
 
 Sorted_likes = Sorting.bubble_sort(allpost, 'likes')
+
+lenlist = len(allpost)
+Sorting.quick_sort(allpost, 0, lenlist, 'likes')
+
+for i in allpost:
+    i.print_all()
+
 #for posts in sortedList_likes:
 #posts. print_all()
 

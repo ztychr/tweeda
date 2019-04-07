@@ -1,4 +1,4 @@
-
+from Statistical import statistical
 
 def swap(nums, i, j):
     temp = nums[i]
@@ -46,5 +46,44 @@ class Sorting:
         except:
             return print("the attribute you typed is not available for posts \n maybe you typed wrong?")
 
+    @classmethod
+    def partition(self, List, low, high, attrs):
+        posPartitions = []
 
+        middle = (low + high)// 2
+        posPartitions.append(List[low])
+        posPartitions.append(List[middle])
+        posPartitions.append(List[high])
+        self.bubble_sort(posPartitions, attrs)
+
+        pivot_value = statistical.get_median(posPartitions, attrs)
+
+        if getattr(List[low], attrs) == pivot_value:
+            pivot_index = low
+        elif getattr(List[middle], attrs) == pivot_value:
+            pivot_index = middle
+        elif getattr(List[high], attrs) == pivot_value:
+            pivot_index = middle
+
+        swap(List, pivot_index, high)
+        i = low
+
+        for j in range(low, high, 1):
+
+            attr = getattr(List[j], attrs)
+            attr2 = getattr(List[high], attrs)
+            if attr <= attr2:
+                swap(List, i, j)
+                i = i + 1
+        swap(List, i, high)
+        return i
+
+    @classmethod
+    def quick_sort(self, List, low, high, attrs):
+        high1 = high - 1
+        if low >= high1:
+            return List
+        pivot_index = self.partition(List, low, high1, attrs)
+        self.quick_sort(List, low, pivot_index - 1, attrs)
+        self.quick_sort(List, pivot_index + 1, high, attrs)
 
