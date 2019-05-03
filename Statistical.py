@@ -23,12 +23,19 @@ class statistical:
     def get_median(self, list, attrs):
         median = 0
         lenght = len(list)
+
         half = lenght / 2
-        if lenght % 2 == 0:
+
+        if lenght == 2:
+            median = list[0]
+
+        elif lenght % 2 == 0:
             middle = int(half)
             middle1 = int(half + 1)
+            print("middle1:" + str(middle1))
             attribute = getattr(list[middle], attrs)
             attribute1 = getattr(list[middle1], attrs)
+            print("length= " + str(lenght))
             median = (attribute + attribute1) / 2
 
         if lenght % 2 != 0:

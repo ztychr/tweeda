@@ -13,8 +13,9 @@ def attributes_to_list(tweet):
     a2 = getattr(tweet, "replys")
     a3 = getattr(tweet, "retweets")
     a4 = getattr(tweet, "message")
+    a5 = getattr(tweet, "ID")
 
-    return a0, a1, a2, a3, a4
+    return a0, a1, a2, a3, a4, a5
 
 class Organizer:
 
@@ -57,12 +58,12 @@ class Organizer:
                 'replys': all_attr[2],
                 'retweets': all_attr[3],
                 'message': all_attr[4],
+                'ID': all_attr[5]
                 }
 
                 templist.append(dict)
 
             json.dump(templist, f)
-            #print(json.dumps(templist, sort_keys=True, indent=2))
             f.close()
 
             print("Data dumped to " + time + twitterhandle + ".json \n")

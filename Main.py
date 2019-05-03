@@ -18,6 +18,18 @@ newscrape.scrape_data()
 # Og når man kalder get_posts, kan man få returneret en liste af posts:
 allpost = newscrape.get_posts()
 
+
+lenlist = len(allpost)
+Sorting.quick_sort(allpost, 0, lenlist, 'likes')
+
+medianlikes = statistical.get_median(allpost, 'likes')
+
+for u in allpost:
+    u.print_all()
+
+
+print("median: " + str(medianlikes))
+
 # Hvis man gerne vil have printet alle attibutter på alle objekter i listen, skal man bruge et forloop, til at gå igennem listen:
 
 #Hvis jeg gerne vil have sorteret listen fra høj-lav, på attributen 'likes' gør jeg således:
@@ -25,11 +37,11 @@ allpost = newscrape.get_posts()
 
 Sorted_likes = Sorting.bubble_sort(allpost, 'likes')
 
-lenlist = len(allpost)
-Sorting.quick_sort(allpost, 0, lenlist, 'likes')
+#lenlist = len(allpost)
+#Sorting.quick_sort(allpost, 0, lenlist, 'likes')
 
-for i in allpost:
-    i.print_all()
+#for i in allpost:
+ #   i.print_all()
 
 #for posts in sortedList_likes:
 #posts. print_all()
@@ -64,5 +76,5 @@ for i in allpost:
     #searchWord.print_all()
 
 # projektmappen skabes og en json fil skrives
-Organizer.create_project(twitterhandle)
-Organizer.write_file_json(allpost, twitterhandle)
+#Organizer.create_project(twitterhandle)
+#Organizer.write_file_json(allpost, twitterhandle)
