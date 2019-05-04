@@ -26,6 +26,7 @@ class Organizer:
 
         try:
             os.makedirs(path)
+            print("new directory created. path:" + str(path))
         except OSError:
             print ("Directory %s was not created. \nDirectory probably exists. \n" % path)
         else:
@@ -37,16 +38,20 @@ class Organizer:
     @classmethod
     def write_file_json(self, listofposts, twitterhandle):
 
-        time = datetime.datetime.now().strftime("%y-%m-%d_%H:%M-")
+        #C:\Users\Ejer\PycharmProjects\empty4git\tweeda\realdonaldtrump
+        if os.path.isfile("realdonaldtrump.json"):
+            print("file found")
 
-        print(time)
+        specpath = os.getcwd() + "\\" + twitterhandle + "\\" + twitterhandle + ".json"
 
-        path = os.getcwd() + "/" + twitterhandle
+        path = os.getcwd() + "\\" + twitterhandle
         templist = []
 
-        if not os.path.isfile(twitterhandle):
 
-            outfile = os.path.join(path, time + twitterhandle+".json")
+        if not os.path.isfile(specpath):
+            print("making and writing file")
+
+            outfile = os.path.join(path,  twitterhandle+".json")
             f = open(outfile, 'w')
 
             for item in listofposts:
@@ -66,11 +71,46 @@ class Organizer:
             json.dump(templist, f)
             f.close()
 
-            print("Data dumped to " + time + twitterhandle + ".json \n")
+            print("Data dumped to " + twitterhandle + ".json \n")
 
         else:
-            print("File called " + time + twitterhandle + ".json already exists. \n")
+            print("File called " + twitterhandle + ".json already exists. \n"
+                                                   "appending new data to file")
+            outfile = os.path.join(path, twitterhandle + ".json")
 
-        #with open(path, twitterhandle + '.json', 'w') as f:
-        #    json.dump(json_data, f)
-        #    f.close()
+
+            with open(outfile) as f:
+                listofdict = json.load(f)
+
+            for item in listofposts:
+
+                appendthis = True
+
+                all_attr = attributes_to_list(item)
+                dict = {
+                    'username': all_attr[0],
+                    'likes': all_attr[1],
+                    'replys': all_attr[2],
+                    'retweets': all_attr[3],
+                    'message': all_attr[4],
+                    'ID': all_attr[5]
+                }
+                for d in listofdict:
+                    if d['ID'] == dict['ID']:
+                        appendthis = False
+                if appendthis == True:
+                    listofdict.append(dict)
+
+            with open(outfile, 'w') as f:
+                json.dump(listofdict, f)
+
+
+
+
+
+
+
+
+
+
+

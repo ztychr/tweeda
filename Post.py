@@ -38,6 +38,6 @@ class tweet:
         print("retweets: " + str(self.retweets))
         print("message: "+ self.message)
         print("length of message: " + str(self.lenMessage))
-        print("ID number: " + self.ID)
+        print("ID number: " + str(self.ID))
         print("\n\n")
         return self.userName, self.likes,self.replys,self.retweets,self.message,self.lenMessage

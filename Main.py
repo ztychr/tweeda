@@ -76,5 +76,5 @@ Sorted_likes = Sorting.bubble_sort(allpost, 'likes')
     #searchWord.print_all()
 
 # projektmappen skabes og en json fil skrives
-#Organizer.create_project(twitterhandle)
-#Organizer.write_file_json(allpost, twitterhandle)
+Organizer.create_project(twitterhandle)
+Organizer.write_file_json(allpost, twitterhandle)
