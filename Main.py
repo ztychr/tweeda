@@ -76,4 +76,3 @@ allpost = newscrape.get_posts()
 Organizer.create_project(twitterhandle)
 Organizer.write_file_json(allpost, twitterhandle)
 
-Organizer.getpostList_Json()

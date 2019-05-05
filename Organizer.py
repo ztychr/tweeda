@@ -36,9 +36,6 @@ class Organizer:
     @classmethod
     def write_file_json(self, listofposts, twitterhandle):
 
-        #C:\Users\Ejer\PycharmProjects\empty4git\tweeda/realdonaldtrump
-        if os.path.isfile("realdonaldtrump.json"):
-            print("file found")
 
         specpath = os.getcwd() + "/" +"Jsondata_files" + "/"+ twitterhandle + "/" + twitterhandle + ".json"
 
@@ -112,7 +109,7 @@ class Organizer:
 
 
         print("\n you have the following Jsonfiles of data stored: \n")
-        Jsonpath = os.getcwd() + "\\" + "Jsondata_files"
+        Jsonpath = os.getcwd() + "/" + "Jsondata_files"
 
         files = os.listdir(Jsonpath)
 
