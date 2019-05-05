@@ -1,5 +1,6 @@
 import json
 import os
+import Post
 
 """
 The Organizer class creates a local directory
@@ -104,21 +105,42 @@ class Organizer:
             with open(outfile, 'w') as f:
                 json.dump(listofdict, f)
 
-
-
     @classmethod
 
     def getpostList_Json(self):
-
-
 
         print("\n you have the following Jsonfiles of data stored: \n")
         Jsonpath = os.getcwd() + "/" + "Jsondata_files"
 
         files = os.listdir(Jsonpath)
+        print("which of these stored accounts would you like to run analysis on? \n")
+        for index, file in enumerate(files):
+            print(index, ".", file)
 
-        for f in files:
-            print("-" , f)
+        choiceindx = input("\n pick the number of the file tht you would like to choose: ")
+
+        choiceindxInt = int(choiceindx)
+
+        choice = files[choiceindxInt]
+
+        choicepath = Jsonpath + "/" + choice + "/" + choice + ".json"
+        with open(choicepath, 'r') as f:
+            datastore = json.load(f)
+
+        postList = []
+
+        for i in datastore:
+            userName = i["username"]
+            likes = i["likes"]
+            replys = i["replys"]
+            retweets = i["retweets"]
+            message = i["message"]
+            ID = i["ID"]
+            temppost = Post.tweet(userName, likes, replys, retweets, message, ID)
+
+            postList.append(temppost)
+
+        return postList
 
 
 
