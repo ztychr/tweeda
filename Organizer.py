@@ -36,16 +36,17 @@ class Organizer:
     @classmethod
     def write_file_json(self, listofposts, twitterhandle):
 
-        #C:\Users\Ejer\PycharmProjects\empty4git\tweeda\realdonaldtrump
+        #C:\Users\Ejer\PycharmProjects\empty4git\tweeda/realdonaldtrump
         if os.path.isfile("realdonaldtrump.json"):
             print("file found")
 
-        specpath = os.getcwd() + "\\" +"Jsondata_files" + "\\"+ twitterhandle + "\\" + twitterhandle + ".json"
+        specpath = os.getcwd() + "/" +"Jsondata_files" + "/"+ twitterhandle + "/" + twitterhandle + ".json"
 
-        path = os.getcwd() + "\\" +"Jsondata_files" + "\\"+  twitterhandle
+        path = os.getcwd() + "/" +"Jsondata_files" + "/"+  twitterhandle
         templist = []
 
-
+        print("specpath")
+        print(specpath)
         if not os.path.isfile(specpath):
             print("making and writing file")
 
