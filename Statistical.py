@@ -1,6 +1,10 @@
 import math
 import statistics
 
+"""
+The statistical class sorts data upon different statistical parameters
+"""
+
 class statistical:
     @classmethod
     # getting calculated average/mean, takes the list you want to get the average of as parameter

@@ -1,6 +1,10 @@
 import json
 import os
 
+"""
+The Organizer class creates a local directory
+    and dumps data to a JSON file
+"""
 
 # realdonaldtrump
 
@@ -20,7 +24,7 @@ class Organizer:
     @classmethod
     def create_project(self, twitterhandle):
  #C:\Users\Ejer\PycharmProjects\empty4git\tweeda\Jsondata_files
-        path = os.getcwd() + "\\" +"Jsondata_files" + "\\"+ twitterhandle
+        path = os.getcwd() + "/" +"Jsondata_files" + "/"+ twitterhandle
 
         try:
             os.makedirs(path)

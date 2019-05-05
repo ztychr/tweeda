@@ -1,5 +1,8 @@
-#the class of our tweet/post object. Is made so that we have a list of objects that we can manipulate
-# with our sorting algorithms, without getting our lists ruined
+"""
+The class of our tweet/post object. Is made so that we have a list of objects that we can manipulate
+    with our sorting algorithms, without getting our lists ruined
+"""
+
 
 class tweet:
 

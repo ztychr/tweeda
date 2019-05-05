@@ -6,7 +6,9 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 nltk.download('punkt', quiet=True)
 
-
+"""
+The WordSearch class searches the message attribute for a chosen word and returns how many times it appears
+"""
 
 
 class WordSearch:
@@ -53,6 +55,8 @@ class WordSearch:
 
     @classmethod
     def word_correlation(self, List, attr, searchWord):
+        # Returns the average like of all posts
+        # and returns the average likes of the posts with the search word
         li = []
         avg_attr = statistical.get_average(List, attr)
         print(avg_attr , "Avg likes of all posts")
