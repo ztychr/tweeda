@@ -1,9 +1,6 @@
-import os
-import sys
 import json
-from Scraping import Scraping
-import time
-import datetime
+import os
+
 
 # realdonaldtrump
 
@@ -17,12 +14,13 @@ def attributes_to_list(tweet):
 
     return a0, a1, a2, a3, a4, a5
 
+
 class Organizer:
 
     @classmethod
     def create_project(self, twitterhandle):
-
-        path = os.getcwd() + "/" + twitterhandle
+ #C:\Users\Ejer\PycharmProjects\empty4git\tweeda\Jsondata_files
+        path = os.getcwd() + "\\" +"Jsondata_files" + "\\"+ twitterhandle
 
         try:
             os.makedirs(path)
@@ -42,9 +40,9 @@ class Organizer:
         if os.path.isfile("realdonaldtrump.json"):
             print("file found")
 
-        specpath = os.getcwd() + "\\" + twitterhandle + "\\" + twitterhandle + ".json"
+        specpath = os.getcwd() + "\\" +"Jsondata_files" + "\\"+ twitterhandle + "\\" + twitterhandle + ".json"
 
-        path = os.getcwd() + "\\" + twitterhandle
+        path = os.getcwd() + "\\" +"Jsondata_files" + "\\"+  twitterhandle
         templist = []
 
 
@@ -106,6 +104,19 @@ class Organizer:
 
 
 
+    @classmethod
+
+    def getpostList_Json(self):
+
+
+
+        print("\n you have the following Jsonfiles of data stored: \n")
+        Jsonpath = os.getcwd() + "\\" + "Jsondata_files"
+
+        files = os.listdir(Jsonpath)
+
+        for f in files:
+            print("-" , f)
 
 
 

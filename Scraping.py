@@ -1,7 +1,7 @@
-from bs4 import BeautifulSoup
 import requests
-import Post
+from bs4 import BeautifulSoup
 
+import Post
 
 
 class Scraping:

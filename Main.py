@@ -1,8 +1,5 @@
-from Scraping import Scraping
-from Statistical import statistical
-from WordSearch import WordSearch
 from Organizer import Organizer
-from Sorting import Sorting
+from Scraping import Scraping
 
 # Først laver initialiserer man objektet:
 twitterhandle = input("\nEnter account to scrape: ")
@@ -19,23 +16,23 @@ newscrape.scrape_data()
 allpost = newscrape.get_posts()
 
 
-lenlist = len(allpost)
-Sorting.quick_sort(allpost, 0, lenlist, 'likes')
+#lenlist = len(allpost)
+#Sorting.quick_sort(allpost, 0, lenlist, 'likes')
 
-medianlikes = statistical.get_median(allpost, 'likes')
+#medianlikes = statistical.get_median(allpost, 'likes')
 
-for u in allpost:
-    u.print_all()
+#for u in allpost:
+ #   u.print_all()
 
 
-print("median: " + str(medianlikes))
+
 
 # Hvis man gerne vil have printet alle attibutter på alle objekter i listen, skal man bruge et forloop, til at gå igennem listen:
 
 #Hvis jeg gerne vil have sorteret listen fra høj-lav, på attributen 'likes' gør jeg således:
 
 
-Sorted_likes = Sorting.bubble_sort(allpost, 'likes')
+#Sorted_likes = Sorting.bubble_sort(allpost, 'likes')
 
 #lenlist = len(allpost)
 #Sorting.quick_sort(allpost, 0, lenlist, 'likes')
@@ -78,3 +75,5 @@ Sorted_likes = Sorting.bubble_sort(allpost, 'likes')
 # projektmappen skabes og en json fil skrives
 Organizer.create_project(twitterhandle)
 Organizer.write_file_json(allpost, twitterhandle)
+
+Organizer.getpostList_Json()
