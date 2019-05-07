@@ -22,6 +22,10 @@ def attributes_to_list(tweet):
 
 class Organizer:
 
+
+
+    number = 1
+
     @classmethod
     def create_project(self, twitterhandle):
  #C:\Users\Ejer\PycharmProjects\empty4git\tweeda\Jsondata_files
@@ -123,6 +127,7 @@ class Organizer:
 
         choice = files[choiceindxInt]
 
+        folder_path = Jsonpath + "/" + choice
         choicepath = Jsonpath + "/" + choice + "/" + choice + ".json"
         with open(choicepath, 'r') as f:
             datastore = json.load(f)
@@ -140,7 +145,21 @@ class Organizer:
 
             postList.append(temppost)
 
-        return postList
+        return postList, folder_path
+
+    @classmethod
+    def analysis_file(self, data, datatype, path):
+        datadict = {}
+
+        with open(path, 'w') as outfile:
+            json.dump(data, outfile)
+
+
+
+
+
+
+
 
 
 

@@ -3,6 +3,8 @@ from Scraping import Scraping
 from Sorting import Sorting
 from Statistical import statistical
 
+
+
 welcome_menu = input("\n Would you like to\n 1. Scrape data from twitter? \
 \n 2. Analyze existing data\n Enter here: ")
 
@@ -19,7 +21,8 @@ if welcome_menu == "1":
     Organizer.write_file_json(allpost, twitterhandle)
 
 elif welcome_menu == "2":
-    postlist = Organizer.getpostList_Json()
+    postlist, Name = Organizer.getpostList_Json()
+
 
     for i in postlist:
         i.print_all()
@@ -47,6 +50,8 @@ elif welcome_menu == "2":
         if statistical_menu == "3":
             Average_likes = statistical.get_average(postlist, 'likes')
 
+            Organizer.analysis_file(Average_likes, 'likes', Name )
+
             print("average aomount of likes: "   + str(Average_likes))
 
             Average_replys = statistical.get_average(postlist, 'replys')
@@ -55,7 +60,8 @@ elif welcome_menu == "2":
 
             Average_lenofmessage = statistical.get_average(postlist, 'lenMessage')
 
-            print("average lenght of messages: " + str(Average_lenofmessage)) + " characters"
+            print("average lenght of messages: " + str(Average_lenofmessage))
+
 
 
 
