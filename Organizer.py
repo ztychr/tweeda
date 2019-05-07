@@ -112,16 +112,17 @@ class Organizer:
     @classmethod
 
     def getpostList_Json(self):
-
-        print("\n you have the following Jsonfiles of data stored: \n")
+        print("************Json menu**************")
+        print()
+        print("You have the following Jsonfiles of data stored: \n")
         Jsonpath = os.getcwd() + "/" + "Jsondata_files"
 
         files = os.listdir(Jsonpath)
-        print("which of these stored accounts would you like to run analysis on? \n")
+        print("Which of these stored accounts would you like to run analysis on? \n")
         for index, file in enumerate(files):
             print(index, ".", file)
 
-        choiceindx = input("\n pick the number of the file tht you would like to choose: ")
+        choiceindx = input("Please enter your choice: ")
 
         choiceindxInt = int(choiceindx)
 
