@@ -89,18 +89,18 @@ class statistical:
                     if (attribute > lastgrouping):
                         ceiling_break = ceiling_break + 1
 
-                print("there are: " + str(frequency1) + " occurences of " + attrs + " below: " + str(grouping1))
-                print("there are: " + str(frequency2) + " occurences of " + attrs + " below: " + str(grouping2))
-                print("there are: " + str(frequency3) + " occurences of " + attrs + " below: " + str(grouping3))
-                if (grouping4 != None):
-                    print("there are: " + str(frequency4) + " occurences of " + attrs + " below: " + str(grouping4))
+              #  print("there are: " + str(frequency1) + " occurences of " + attrs + " below: " + str(grouping1))
+               # print("there are: " + str(frequency2) + " occurences of " + attrs + " below: " + str(grouping2))
+                #print("there are: " + str(frequency3) + " occurences of " + attrs + " below: " + str(grouping3))
+                #if (grouping4 != None):
+                 #   print("there are: " + str(frequency4) + " occurences of " + attrs + " below: " + str(grouping4))
 
-                if (grouping5 != None):
-                    print("there are: " + str(frequency5) + " occurences of " + attrs + "below" + str(grouping5))
+#                if (grouping5 != None):
+ #                   print("there are: " + str(frequency5) + " occurences of " + attrs + "below" + str(grouping5))
 
-                print("there are: " + str(ceiling_break) + " ocurrences of " + attrs + " above your highest grouping")
+#                print("there are: " + str(ceiling_break) + " ocurrences of " + attrs + " above your highest grouping")
 
-                return grouping1, grouping2, grouping3, grouping4, grouping5
+                return frequency1, frequency2, frequency3, frequency4, frequency5, ceiling_break
             else:
                 return print("you cant sort on message or username \n those are strings")
         except:
@@ -117,7 +117,6 @@ class statistical:
         # calc of mean
         # skal udskiftes med getAverage()
         average = self.get_average(List, attrs)
-        print("devagerage" + str(average))
         # getting differences between datapoints and calculated average
         #working
         differences = []
@@ -128,7 +127,6 @@ class statistical:
 
         # squaring differences
         Squaring = []
-
         for i in range(0, listLen):
             square = differences[i] * differences[i]
             Squaring.append(square)
@@ -136,10 +134,7 @@ class statistical:
         sumofSquared = sum(Squaring)
 
         AverageSquare = sumofSquared/listLen
-        print(AverageSquare)
         deviation = math.sqrt(AverageSquare)
-        print("deviation: " + str(deviation))
-
         return deviation
         #  return deviation
         # get square root of squaredMean = standard_deviation
@@ -158,4 +153,4 @@ class statistical:
             tempList.append(attribute)
 
         stdev = statistics.pstdev(tempList)
-        print("standard dev:" + str(stdev))
+        return stdev

@@ -109,8 +109,10 @@ def statistical_menu(listofpost, path):
     print("************Statistical menu**************")
 
     choice = input("""
-    1: Sort from high to low
+    1: Sort from high to low, and get median
     2: Get calculated average for all attributes
+    3: get Standard deviation
+    4. get frequency groupings
     Q: Quit
 
     Please enter your choice: """)
@@ -119,6 +121,10 @@ def statistical_menu(listofpost, path):
         sort_highlow(listofpost, path)
     elif choice == "2":
         get_average(listofpost, path)
+    elif choice == "3":
+        get_standarddev(listofpost, path)
+    elif choice == "4":
+        freq_grouping(listofpost, path)
     elif choice == "Q" or "q":
         sys.exit
     else:
@@ -149,16 +155,24 @@ def sort_highlow(listofpost, path):
         attribute = 'lenMessage'
     lenlist = len(listofpost)
 
-
+    for posts in listofpost:
+        posts.print_all()
 
     Sorting.quick_sort(listofpost, 0, lenlist, attribute)
     Organizer.overwrite_file(path,listofpost)
 
-    print("sorting done. json-file overwritten with sorted dataset")
+    print(" sorting done. json-file overwritten with sorted dataset")
+
+    medianpos = input("would you also like to get the median calculated on same " + attribute + "?"
+                    "\n  1. Yes, calculate it, print to console, and save in Json-analysisfile \n  2. no")
+    if medianpos == "1":
+        medianvalue = statistical.get_median(listofpost, attribute)
+        print("the median value of the attribute " + attribute + "is " + str(medianvalue)+ "\n\n\n")
+        Organizer.analysis_file(medianvalue, "the median of " + attribute + " is: ", path)
 
 
-    for posts in listofpost:
-        posts.print_all()
+
+
 
     end_operation(listofpost, path)
 
@@ -203,11 +217,116 @@ def word_correlate(List, path):
 
 
 
+def get_standarddev(listofposts, path):
+    choice = input("which attribute would you like to get the standard deviation of?: \n "
+                   "1. likes \n "
+                   "2. replys \n"
+                   " 3. retweets \n"
+                   " 4. length of message\n"
+                   " 5. Total reactions ")
+
+    if choice == "1":
+        attribute = 'likes'
+    elif choice == '2':
+        attribute = 'replys'
+    elif choice == "3":
+        attribute = "retweets"
+    elif choice == "4":
+        attribute = 'lenMessage'
+    elif choice == "5":
+        attribute = 'reactions'
+
+    standard_dev = statistical.standard_deviation(listofposts, attribute)
+    standard_dev_round = int(standard_dev)
+
+    print("\n standard deviation is:" +  str(standard_dev_round))
+
+    Organizer.analysis_file(standard_dev_round, "standard deviation of "+ attribute +":", path)
+
+
+
+def freq_grouping(listofpost, path):
+
+    attribute = ""
+    choice = input("which attribute would you like to perfom the grouping on?: \n "
+                   "1. likes \n "
+                   "2. replys \n"
+                   " 3. retweets \n"
+                   " 4. length of message\n"
+                   " 5. Total reactions ")
+    if choice == "1":
+        attribute = 'likes'
+    elif choice == '2':
+        attribute = 'replys'
+    elif choice == "3":
+        attribute = "retweets"
+    elif choice == "4":
+        attribute = 'lenMessage'
+    elif choice == "5":
+        attribute = 'reactions'
+
+    groupings = input("and how would you like to group the data? \n"
+                      "1. 5, 10, 20, 30, 40 \n"
+                      "2. 50, 100, 150 \n"
+                      "3. 100, 300, 500, 700, 1000 \n"
+                      "4. 500, 1000, 3000, 5000, 8000 \n"
+                      "5. 1500, 5000, 10000, 15.000, 20.000 \n")
+    if groupings == "1":
+        one = 5
+        two = 10
+        three = 20
+        four = 30
+        five = 40
+    if groupings == "2":
+        one = 50
+        two = 100
+        three = 150
+        four = 300
+        five = 500
+    if groupings == "3":
+        one = 100
+        two = 300
+        three = 500
+        four = 700
+        five = 1000
+    if groupings == "4":
+        one = 500
+        two = 10000
+        three = 3000
+        four = 5000
+        five = 8000
+    if groupings == "5":
+        one = 1500
+        two = 5000
+        three = 10000
+        four = 15000
+        five = 20000
+
+    freqs = statistical.frequency_grouping(listofpost, attribute, one, two, three, four, five)
+
+    print("there are " + str(freqs[0]) + " posts with " + attribute + " below " + str(one))
+    print("there are " + str(freqs[1]) + " posts with " + attribute + " between " + str(one) + " and " + str(two))
+    print("there are " + str(freqs[2]) + " posts with " + attribute + " between " + str(two) + " and " + str(three))
+    print("there are " + str(freqs[3]) + " posts with " + attribute + " between " + str(three) + " and " + str(four))
+    print("there are " + str(freqs[4]) + " posts with " + attribute + " between " + str(four) + " and " + str(five))
+    print("there are " + str(freqs[5]) + " posts with " + attribute + " above " + str(five))
+
+    Organizer.analysis_file(freqs[0], " amount of " + attribute + " below "+ str(one), path)
+    Organizer.analysis_file(freqs[1], " amount of " + attribute + " between " + str(one) + " and " + str(two), path)
+    Organizer.analysis_file(freqs[2], " amount of " + attribute + " between " + str(two) + " and " + str(three), path)
+    Organizer.analysis_file(freqs[3], " amount of " + attribute + " between " + str(three) + " and " + str(four), path)
+    Organizer.analysis_file(freqs[4], " amount of " + attribute + " between " + str(four) + " and " + str(five), path)
+    Organizer.analysis_file(freqs[5], " amount of " + attribute + " above " + str(five), path)
+
+
+
+
+
 
 
 
 def get_average(listofpost, path):
-    Average_likes = statistical.get_average(listofpost, 'likes')
+    Average_likes = statistical.get_average(listofpost, 'likes' )
 
     Organizer.analysis_file(Average_likes, 'average amount of likes', path)
 
