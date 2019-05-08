@@ -9,18 +9,21 @@ The Organizer class creates a local directory
 
 # realdonaldtrump
 
-def attributes_to_list(tweet):
-    a0 = getattr(tweet, "userName")
-    a1 = getattr(tweet, "likes")
-    a2 = getattr(tweet, "replys")
-    a3 = getattr(tweet, "retweets")
-    a4 = getattr(tweet, "message")
-    a5 = getattr(tweet, "ID")
 
-    return a0, a1, a2, a3, a4, a5
 
 
 class Organizer:
+
+    @classmethod
+    def attributes_to_list(cls, tweet):
+        a0 = getattr(tweet, "userName")
+        a1 = getattr(tweet, "likes")
+        a2 = getattr(tweet, "replys")
+        a3 = getattr(tweet, "retweets")
+        a4 = getattr(tweet, "message")
+        a5 = getattr(tweet, "ID")
+
+        return a0, a1, a2, a3, a4, a5
 
 
 
@@ -61,7 +64,7 @@ class Organizer:
 
             for item in listofposts:
 
-                all_attr = attributes_to_list(item)
+                all_attr = self.attributes_to_list(item)
                 dict = {
                 'username': all_attr[0],
                 'likes': all_attr[1],
@@ -91,7 +94,7 @@ class Organizer:
 
                 appendthis = True
 
-                all_attr = attributes_to_list(item)
+                all_attr = self.attributes_to_list(item)
                 dict = {
                     'username': all_attr[0],
                     'likes': all_attr[1],
@@ -112,17 +115,16 @@ class Organizer:
     @classmethod
 
     def getpostList_Json(self):
-        print("************Json menu**************")
-        print()
-        print("You have the following Jsonfiles of data stored: \n")
+
+        print("\n you have the following Jsonfiles of data stored: \n")
         Jsonpath = os.getcwd() + "/" + "Jsondata_files"
 
         files = os.listdir(Jsonpath)
-        print("Which of these stored accounts would you like to run analysis on? \n")
+        print("which of these stored accounts would you like to run analysis on? \n")
         for index, file in enumerate(files):
             print(index, ".", file)
 
-        choiceindx = input("Please enter your choice: ")
+        choiceindx = input("\n pick the number of the file tht you would like to choose: ")
 
         choiceindxInt = int(choiceindx)
 
@@ -149,13 +151,55 @@ class Organizer:
         return postList, folder_path
 
     @classmethod
+    def overwrite_file(self, path, list):
+        #C:\Users\Ejer\PycharmProjects\empty4git\tweeda/Jsondata_files/realdonaldtrump
+        filename = ""
+        newdata = []
+
+        files = os.listdir(path)
+        for file in files:
+            if file != "analysis.json":
+                filename = file
+        speecpath = path + "/"+ filename
+
+        for item in list:
+            all_attr = self.attributes_to_list(item)
+            dict = {
+                'username': all_attr[0],
+                'likes': all_attr[1],
+                'replys': all_attr[2],
+                'retweets': all_attr[3],
+                'message': all_attr[4],
+                'ID': all_attr[5]
+            }
+
+            newdata.append(dict)
+
+        with open(speecpath, "w") as f:
+            json.dump(newdata, f)
+
+
+
+
+    @classmethod
     def analysis_file(self, data, datatype, path):
-        datadict = {}
-
-        with open(path, 'w') as outfile:
-            json.dump(data, outfile)
+        analysisdict = {}
+        newpath = path + "/" + "analysis.json"
 
 
+        if not os.path.isfile(newpath):
+            with open(newpath, 'w') as outfile:
+                analysisdict["anlaysed data for the file:"] = path
+                analysisdict[datatype] = data
+                json.dump(analysisdict, outfile)
+
+        else:
+            with open(newpath) as f:
+                listofdict = json.load(f)
+
+            with open(newpath, 'w') as f:
+                listofdict[datatype] = data
+                json.dump(listofdict, f)
 
 
 

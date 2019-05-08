@@ -2,7 +2,9 @@ from Organizer import Organizer
 from Scraping import Scraping
 from Sorting import Sorting
 from Statistical import statistical
+from WordSearch import WordSearch
 import sys  # sys.exit command to quit/logout of the application
+
 
 # Menu system
 def main_menu():
@@ -44,7 +46,8 @@ def scrape_menu():
 
 def analyze_menu():
     clear()
-    postlist, Name = Organizer.getpostList_Json()
+    postlist, path = Organizer.getpostList_Json()
+
 
 
 
@@ -61,9 +64,9 @@ def analyze_menu():
     Please enter your choice: """)
 
     if choice == "1":
-        statistical_menu(postlist)
+        statistical_menu(postlist, path)
     elif choice == "2":
-        wordsearch_menu()
+        wordsearch_menu(postlist, path)
     elif choice == "M" or "m":
         main_menu()
     elif choice == "Q" or "q":
@@ -74,34 +77,48 @@ def analyze_menu():
         analyze_menu()
 
 
-def wordsearch_menu():
-    pass
+def wordsearch_menu(listofpost, path):
 
 
-def statistical_menu(listofpost):
+    clear()
+    print("************Wordsearch menu**************")
+
+    choice = input("""
+        1: Search for specific word \n
+        2: get the most common words\n
+        3. Check if containing certain words make a post more or less popular\n  
+        Q: Quit
+        \n
+        Please enter your choice: """)
+
+    if choice == "1":
+        word_searching(listofpost, path)
+    if choice == "2":
+        word_counting(listofpost, path)
+    if choice == "3":
+        pass
+        #wordcorrelation()
+    elif choice == "Q" or "q":
+        sys.exit
+
+
+
+def statistical_menu(listofpost, path):
 
     clear()
     print("************Statistical menu**************")
 
     choice = input("""
     1: Sort from high to low
-    2: Sort from low to high
-    3: Get calculated average for all attributes
-    M: Back to main menu
+    2: Get calculated average for all attributes
     Q: Quit
 
     Please enter your choice: """)
 
     if choice == "1":
-
-        sort_highlow(listofpost)
-
+        sort_highlow(listofpost, path)
     elif choice == "2":
-        sort_lowhigh()
-    elif choice == "3":
-        get_average(listofpost)
-    elif choice == "M" or "m":
-        main_menu()
+        get_average(listofpost, path)
     elif choice == "Q" or "q":
         sys.exit
     else:
@@ -114,47 +131,89 @@ def clear():
     print("\n" * 50)
 
 
-def sort_highlow(listofpost):
+def sort_highlow(listofpost, path):
     # Quick_sort returns a sorted list on attribute high
+    attribute = ""
+    choice = input("which attribute would you like to sort the list on?: \n "
+                   "1. likes \n "
+                   "2. replys \n"
+                   " 3. retweets \n"
+                   " 4. length of message")
+    if choice == "1":
+        attribute = 'likes'
+    elif choice == '2':
+        attribute = 'replys'
+    elif choice == "3":
+        attribute = "retweets"
+    elif choice == "4":
+        attribute = 'lenMessage'
     lenlist = len(listofpost)
 
-    Sorting.quick_sort(listofpost, 0, lenlist, 'likes')
+
+
+    Sorting.quick_sort(listofpost, 0, lenlist, attribute)
+    Organizer.overwrite_file(path,listofpost)
+
+    print("sorting done. json-file overwritten with sorted dataset")
 
 
     for posts in listofpost:
         posts.print_all()
 
-    print("Want to return to statistical menu?")
-    choice = input("""
-    1. Yes
-    2. No
-    Please enter your choice: """)
+    end_operation(listofpost, path)
 
-    if choice == "1":
-        statistical_menu(listofpost)
-    elif choice == "2":
-        sys.exit()
+def word_searching(listofpost, path):
+
+    searchword = input("\n which word would you like to search for?: ")
+    occurences = WordSearch.search_word(listofpost, searchword)
+
+    Organizer.analysis_file(occurences, "occurences of word: "+searchword, path)
+
+    print("The word " + "'" + searchword + "'" + " appears " + str(occurences) + " times in the posts scraped \n")
+    print("wordsearch data dumped to analysisfile")
+
+    end_operation(listofpost, path)
+
+def word_counting(listofpost, path):
+    result = WordSearch.word_counter(listofpost)
+
+    print(result)
 
 
-def sort_lowhigh():
-    pass
 
+def get_average(listofpost, path):
+    Average_likes = statistical.get_average(listofpost, 'likes')
 
-def get_average():
-    Average_likes = statistical.get_average(postlist, 'likes')
-
-    Organizer.analysis_file(Average_likes, 'likes', Name)
+    Organizer.analysis_file(Average_likes, 'average amount of likes', path)
 
     print("average aomount of likes: " + str(Average_likes))
 
-    Average_replys = statistical.get_average(postlist, 'replys')
+    Average_replys = statistical.get_average(listofpost, 'replys')
+
+    Organizer.analysis_file(Average_replys, 'average amount of replys', path)
 
     print("average amount of replys: " + str(Average_replys))
 
-    Average_lenofmessage = statistical.get_average(postlist, 'lenMessage')
+    Average_lenofmessage = statistical.get_average(listofpost, 'lenMessage')
+
+    Organizer.analysis_file(Average_lenofmessage, 'average lengnth of messages', path)
+
 
     print("average lenght of messages: " + str(Average_lenofmessage))
 
+    end_operation(listofpost, path)
+
+def end_operation(listofpost, path):
+    print("Want to return to statistical menu?")
+    choice = input("""
+      1. Yes
+      2. No
+      Please enter your choice: """)
+
+    if choice == "1":
+        statistical_menu(listofpost, path)
+    elif choice == "2":
+        sys.exit()
 
 main_menu()
 

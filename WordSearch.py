@@ -23,16 +23,22 @@ class WordSearch:
             message = getattr(word, 'message')
             if message.__contains__(searchword):
                 amounts = amounts + 1
-        return print("The word " + "'" + searchword + "'" + " appears " + str(amounts) + " times in the posts scraped \n")
-
+        return amounts
     @classmethod
     def word_counter(self, List):
+        allwords =[]
         for word in List:
             message = getattr(word, 'message')
             split_it = message.split()  # split() returns list of all the words in the string
-            Counter = collections.Counter(split_it)  # Pass the split_it list to instance of Counter class.
-            most_occur = Counter.most_common(5)
-        print(most_occur)
+            allwords.extend(split_it)
+
+
+
+        Counter = collections.Counter(allwords)  # Pass the split_it list to instance of Counter class.
+        most_occur = Counter.most_common(5)
+
+
+        return most_occur
 
     @classmethod
     def word_counter2(self, List):

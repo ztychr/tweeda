@@ -1,17 +1,18 @@
 from Statistical import statistical
 
-def swap(nums, i, j):
-    temp = nums[i]
-    nums[i] = nums[j]
-    nums[j] = temp
 
 
 class Sorting:
     # bubblesort algorthm that sorts low-high. The attribute that you would like to sort is passed as parameter
     # takes list of posts as parameter
+    @classmethod
+    def swap(cls, nums, i, j):
+        temp = nums[i]
+        nums[i] = nums[j]
+        nums[j] = temp
 
-    @staticmethod
-    def bubble_sort(List, attrs):
+    @classmethod
+    def bubble_sort(cls, List, attrs):
         bubbleruns = 0
         try:
             if attrs != 'message' and attrs != 'userName':
@@ -22,7 +23,7 @@ class Sorting:
                         attribute1 = getattr(List[j + 1], attrs)
 
                         if attribute > attribute1:
-                            swap(List, j, j + 1)
+                            cls.swap(List, j, j + 1)
                 return List
             else:
                 return print("you cant sort on message or username \n those are strings")
@@ -31,8 +32,8 @@ class Sorting:
 
     # bubblesort algorithm that sorts high-low. the attribute that you would like to sort on is passed as parameter
 
-    @staticmethod
-    def bubble_sort_reverse(List, attrs):
+    @classmethod
+    def bubble_sort_reverse(cls, List, attrs):
 
         try:
             if attrs != 'message' and attrs != 'userName':
@@ -41,7 +42,7 @@ class Sorting:
                         attribute = getattr(List[j], attrs)
                         attribute1 = getattr(List[j + 1], attrs)
                         if attribute < attribute1:
-                            swap(List, j, j + 1)
+                            cls.swap(List, j, j + 1)
                 return List
             else:
                 return print("you cant sort on message or username \n those are strings")
@@ -67,7 +68,7 @@ class Sorting:
         elif getattr(List[high], attrs) == pivot_value:
             pivot_index = middle
 
-        swap(List, pivot_index, high)
+        self.swap(List, pivot_index, high)
         i = low
 
         for j in range(low, high, 1):
@@ -75,9 +76,9 @@ class Sorting:
             attr = getattr(List[j], attrs)
             attr2 = getattr(List[high], attrs)
             if attr <= attr2:
-                swap(List, i, j)
+                self.swap(List, i, j)
                 i = i + 1
-        swap(List, i, high)
+        self.swap(List, i, high)
         return i
 
     @classmethod
