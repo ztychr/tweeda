@@ -19,8 +19,7 @@ class Scraping:
 
     # the method that actually scrapes our data. Needs to be run before any other methods are
     def scrape_data(self):
-        self.bs = BeautifulSoup(self.r.content, 'lxml')
-        self.bs.prettify()
+        self.bs = BeautifulSoup(self.r.content, 'html.parser')
         print("\n")
         self.find_tweets = self.bs.find_all('div', {'class': 'tweet'})
         self.tweetlist = []

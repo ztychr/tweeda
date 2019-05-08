@@ -13,6 +13,7 @@ class tweet:
         self.replys = replys
         self.retweets = retweets
         self.message = message
+        self.reactions = likes + replys + retweets
         self.lenMessage = len(self.message)
         self.mentions = self.message.count('@')
         self.hastags = self.message.count('#')

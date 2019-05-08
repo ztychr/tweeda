@@ -39,6 +39,7 @@ def scrape_menu():
     newscrape.scrape_data() # Scarping object
     allpost = newscrape.get_posts() # Returns list of posts
 
+
     Organizer.create_project(twitterhandle)
     Organizer.write_file_json(allpost, twitterhandle)
     main_menu()
@@ -96,8 +97,7 @@ def wordsearch_menu(listofpost, path):
     if choice == "2":
         word_counting(listofpost, path)
     if choice == "3":
-        pass
-        #wordcorrelation()
+        word_correlate(listofpost, path)
     elif choice == "Q" or "q":
         sys.exit
 
@@ -177,7 +177,32 @@ def word_searching(listofpost, path):
 def word_counting(listofpost, path):
     result = WordSearch.word_counter(listofpost)
 
-    print(result)
+    for r in result:
+        Organizer.analysis_file(r[0], "There are " + str(r[1]) + " occurences of: ", path)
+        print("there are " , str(r[1]) , "occurences of the word " , str(r[0]))
+
+    print("this data has been dumped to json analysisfile")
+
+def word_correlate(List, path):
+
+    print("type a certain word that you would like to see correlated with a tweets totalt impact (likes+replys+ retweet)\n"
+          "This function will compare the total impact the tweets containing this word has, compared to the 'regular' impact \n \n")
+    choiceword = input("type here: ")
+
+    difference = WordSearch.word_correlation(List, choiceword)
+    if difference == None:
+        print("\n that word is nowhere to be found in the posts that you are analysing")
+        word_correlate(List, path)
+
+    if difference>0:
+        print("posts containing the word " , choiceword, " have generally ", str(difference), " more reactions")
+        Organizer.analysis_file("posts with the word " + choiceword + " has following amount more reactions than average: ", difference, path)
+    if difference<0:
+        print("posts containing the word " , choiceword, " have generally ", str(difference), " fewer reactions")
+        Organizer.analysis_file( difference, "posts with the word " + choiceword + " has following amount fewer reactions than average: ",path)
+
+
+
 
 
 

@@ -26,9 +26,6 @@ class Organizer:
         return a0, a1, a2, a3, a4, a5
 
 
-
-    number = 1
-
     @classmethod
     def create_project(self, twitterhandle):
  #C:\Users\Ejer\PycharmProjects\empty4git\tweeda\Jsondata_files

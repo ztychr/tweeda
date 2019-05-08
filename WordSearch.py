@@ -27,12 +27,16 @@ class WordSearch:
     @classmethod
     def word_counter(self, List):
         allwords =[]
+
+        stops = set(stopwords.words('english'))
         for word in List:
+            tempfiltered = []
             message = getattr(word, 'message')
             split_it = message.split()  # split() returns list of all the words in the string
-            allwords.extend(split_it)
-
-
+            for w in split_it:
+                if not stops.__contains__(w):
+                    tempfiltered.append(w)
+            allwords.extend(tempfiltered)
 
         Counter = collections.Counter(allwords)  # Pass the split_it list to instance of Counter class.
         most_occur = Counter.most_common(5)
@@ -60,11 +64,11 @@ class WordSearch:
         print(most_occur)
 
     @classmethod
-    def word_correlation(self, List, attr, searchWord):
+    def word_correlation(self, List, searchWord):
         # Returns the average like of all posts
         # and returns the average likes of the posts with the search word
         li = []
-        avg_attr = statistical.get_average(List, attr)
+        avg_attr = statistical.get_average(List, 'reactions')
         print(avg_attr , "Avg likes of all posts")
 
         for posts in List:
@@ -72,20 +76,15 @@ class WordSearch:
             if message.__contains__(searchWord):
                 li.append(posts)
 
-        newAvg_attr = statistical.get_average(li, attr)
+        if len(li) != 0:
+            newAvg_attr = statistical.get_average(li, 'reactions')
 
-        if (newAvg_attr > avg_attr):
+
             differenceInAttr = newAvg_attr-avg_attr
             new = int(differenceInAttr)
-            print('Posts containing the word ' + "'" + searchWord + "'" + " has in average " + str(new) + " more " + attr)
-            print("")
 
-            return li
 
-        if(newAvg_attr < avg_attr):
-            differenceInAttr2 = avg_attr-newAvg_attr
-            new2 = int(differenceInAttr2)
-            print('Posts containing the word ' + "'" + searchWord + "'" + " has on average " + str(new2) + " less " + attr)
-            print("")
+            return new
+        else:
+            return None
 
-            return li
