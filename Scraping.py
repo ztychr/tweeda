@@ -70,7 +70,7 @@ class Scraping:
         if self.tweetlist:
             return self.tweetlist
         else:
-            return "run scrapedata first"
+            return print("run scrapedata first")
 
 
 

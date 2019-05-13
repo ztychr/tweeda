@@ -89,17 +89,6 @@ class statistical:
                     if (attribute > lastgrouping):
                         ceiling_break = ceiling_break + 1
 
-              #  print("there are: " + str(frequency1) + " occurences of " + attrs + " below: " + str(grouping1))
-               # print("there are: " + str(frequency2) + " occurences of " + attrs + " below: " + str(grouping2))
-                #print("there are: " + str(frequency3) + " occurences of " + attrs + " below: " + str(grouping3))
-                #if (grouping4 != None):
-                 #   print("there are: " + str(frequency4) + " occurences of " + attrs + " below: " + str(grouping4))
-
-#                if (grouping5 != None):
- #                   print("there are: " + str(frequency5) + " occurences of " + attrs + "below" + str(grouping5))
-
-#                print("there are: " + str(ceiling_break) + " ocurrences of " + attrs + " above your highest grouping")
-
                 return frequency1, frequency2, frequency3, frequency4, frequency5, ceiling_break
             else:
                 return print("you cant sort on message or username \n those are strings")
@@ -142,15 +131,4 @@ class statistical:
 
     # using an already defined standard deviationmeasurement
     # for testing my own method
-    @classmethod
-
-    def native_sd(self, List, attrs):
-        tempList = []
-        lenList = len(List)
-
-        for i in range(0,lenList):
-            attribute = getattr(List[i], attrs)
-            tempList.append(attribute)
-
-        stdev = statistics.pstdev(tempList)
-        return stdev
+ 
