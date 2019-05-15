@@ -1,5 +1,6 @@
 from Organizer import Organizer
 from Scraping import Scraping
+from Post import tweet
 from Sorting import Sorting
 from Statistical import statistical
 from WordSearch import WordSearch
@@ -37,6 +38,8 @@ def scrape_menu():
 
     newscrape = Scraping(twitterhandle, tweetamountInt) # Object of the user name and amounts of tweets to be scraped
     newscrape.scrape_data() # Scarping object
+
+
     allpost = newscrape.get_posts() # Returns list of posts
 
 
@@ -155,8 +158,9 @@ def sort_highlow(listofpost, path):
         attribute = 'lenMessage'
     lenlist = len(listofpost)
 
-    for posts in listofpost:
-        posts.print_all()
+    tweet.print_tweetlist(listofpost)
+
+
 
     Sorting.quick_sort(listofpost, 0, lenlist, attribute)
     Organizer.overwrite_file(path,listofpost)

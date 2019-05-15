@@ -28,7 +28,6 @@ class Organizer:
 
     @classmethod
     def create_project(self, twitterhandle):
- #C:\Users\Ejer\PycharmProjects\empty4git\tweeda\Jsondata_files
         path = os.getcwd() + "/" +"Jsondata_files" + "/"+ twitterhandle
 
         try:
@@ -39,8 +38,6 @@ class Organizer:
         else:
             print ("Directory %s created. \n" % path)
 
-        #if not os.path.exists(path):
-            #os.makedirs(path)
 
     @classmethod
     def write_file_json(self, listofposts, twitterhandle):

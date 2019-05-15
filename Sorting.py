@@ -13,14 +13,13 @@ class Sorting:
 
     @classmethod
     def bubble_sort(cls, List, attrs):
-        bubbleruns = 0
         try:
             if attrs != 'message' and attrs != 'userName':
                 for i in range(0, len(List) - 1):
 
                     for j in range(0, len(List) - 1 - i, 1):
-                        attribute = getattr(List[j], attrs)
                         attribute1 = getattr(List[j + 1], attrs)
+                        attribute = getattr(List[j], attrs)
 
                         if attribute > attribute1:
                             cls.swap(List, j, j + 1)

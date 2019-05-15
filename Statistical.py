@@ -128,7 +128,3 @@ class statistical:
         #  return deviation
         # get square root of squaredMean = standard_deviation
 
-
-    # using an already defined standard deviationmeasurement
-    # for testing my own method
- 

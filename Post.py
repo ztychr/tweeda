@@ -45,3 +45,14 @@ class tweet:
         print("ID number: " + str(self.ID))
         print("\n\n")
         return self.userName, self.likes,self.replys,self.retweets,self.message,self.lenMessage
+
+    #method to print through a list of Tweets
+
+    @classmethod
+
+    def print_tweetlist(self, listofposts):
+
+        for i in listofposts:
+            i.print_all()
+
+

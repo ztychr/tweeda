@@ -69,7 +69,7 @@ class WordSearch:
         # and returns the average likes of the posts with the search word
         li = []
         avg_attr = statistical.get_average(List, 'reactions')
-        print(avg_attr , "Avg likes of all posts")
+
 
         for posts in List:
             message = getattr(posts, 'message')
