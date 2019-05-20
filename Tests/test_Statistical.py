@@ -37,7 +37,7 @@ class test_statistical(unittest.TestCase):
     def test_get_median(self):
 
         lenlist = len(self.alist)
-        #necessary to sort the list first on the relevant attribute
+        # necessary to sort the list first on the relevant attribute
 
         Sorting.quick_sort(self.alist, 0 , lenlist-1, 'likes')
 
@@ -47,7 +47,7 @@ class test_statistical(unittest.TestCase):
 
 
     def test_frequency_grouping(self):
-        #testing with, and without the overloaded arguments:
+        # testing with, and without the overloaded arguments:
         freq = statistical.frequency_grouping(self.alist, 'likes', 12, 16, 21)
 
         self.assertEqual(freq[0], 3)
@@ -55,7 +55,7 @@ class test_statistical(unittest.TestCase):
         self.assertEqual(freq[2], 2)
         self.assertEqual(freq[3], 0)
 
-        #adding some more stuff to the list, and then testing with all arguments used
+        # adding some more stuff to the list, and then testing with all arguments used
 
         self.alist.append(tweet("name", 30, 0, 0, "text", 2720))
         self.alist.append(tweet("name", 100, 0, 0, "text", 2720))
@@ -73,9 +73,4 @@ class test_statistical(unittest.TestCase):
 
         sd = statistical.standard_deviation(self.alist, 'likes')
         self.assertEqual(sd, 4.17)
-
-
-
-
-
 

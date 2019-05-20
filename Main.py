@@ -10,15 +10,17 @@ import sys  # sys.exit command to quit/logout of the application
 
 # Menu system
 def main_menu():
-    clear()
-    print("************Python Twitter Scraper v1.3**************")
+    print(30 * '-')
+    print("   M A I N - M E N U")
+    print(30 * '-')
 
-    choice = input("""
+    print("""
 1: Scrape live data
 2: Analyze existing data
-Q: Quit
+Q: Quit """)
 
-Please enter your choice: """)
+    print(30 * '-')
+    choice = input('Enter your choice : ')
 
     if choice == "1":
         scrape_menu()
@@ -50,23 +52,20 @@ def scrape_menu():
 
 
 def analyze_menu():
-    clear()
     postlist, path = Organizer.getpostList_Json()
 
+    print(30 * '-')
+    print("   A N A L Y Z E - M E N U")
+    print(30 * '-')
 
+    print("""
+1: Statistical operations and sorting
+2: Word correlations
+M: Back to main menu
+Q: Quit """)
 
-
-
-    clear()
-    print("************Analyze menu**************")
-
-    choice = input("""
-    1: Statistical operations and sorting
-    2: Word correlations
-    M: Back to main menu
-    Q: Quit
-
-    Please enter your choice: """)
+    print(30 * '-')
+    choice = input('Enter your choice : ')
 
     if choice == "1":
         statistical_menu(postlist, path)
@@ -84,18 +83,19 @@ def analyze_menu():
 
 def wordsearch_menu(listofpost, path):
 
+    print(30 * '-')
+    print("   S E A R C H  - M E N U")
+    print(30 * '-')
 
-    clear()
-    print("************Wordsearch menu**************")
+    print("""
+1: Search for specific word 
+2: get the most common words
+3. Check if containing certain words make a post more or less popular
+4. Check the probability of a post containing a certain word
+Q: Quit """)
 
-    choice = input("""
-        1: Search for specific word \n
-        2: get the most common words\n
-        3. Check if containing certain words make a post more or less popular\n  
-        4. Check the probability of a post containing a certain word
-        Q: Quit
-        \n
-        Please enter your choice: """)
+    print(30 * '-')
+    choice = input('Enter your choice : ')
 
     if choice == "1":
         word_searching(listofpost, path)
@@ -111,18 +111,19 @@ def wordsearch_menu(listofpost, path):
 
 
 def statistical_menu(listofpost, path):
+    print(30 * '-')
+    print("   S T A T I S T I C S  - M E N U")
+    print(30 * '-')
 
-    clear()
-    print("************Statistical menu**************")
+    print("""
+1: Sort from high to low, and get median
+2: Get calculated average for all attributes
+3: get Standard deviation
+4. get frequency groupings
+Q: Quit """)
 
-    choice = input("""
-    1: Sort from high to low, and get median
-    2: Get calculated average for all attributes
-    3: get Standard deviation
-    4. get frequency groupings
-    Q: Quit
-
-    Please enter your choice: """)
+    print(30 * '-')
+    choice = input('Enter your choice : ')
 
     if choice == "1":
         sort_highlow(listofpost, path)
@@ -218,6 +219,8 @@ def word_counting(listofpost, path):
         print("there are " , str(r[1]) , "occurences of the word " , str(r[0]))
 
     print("this data has been dumped to json analysisfile")
+    end_operation(listofpost, path)
+
 
 def word_correlate(List, path):
 
@@ -237,6 +240,7 @@ def word_correlate(List, path):
         print("posts containing the word " , choiceword, " have generally ", str(difference), " fewer reactions")
         Organizer.analysis_file( difference, "posts with the word " + choiceword + " has following amount fewer reactions than average: ",path)
 
+        end_operation(list, path)
 
 
 def get_standarddev(listofposts, path):
@@ -264,6 +268,9 @@ def get_standarddev(listofposts, path):
     print("\n standard deviation is:" +  str(standard_dev_round))
 
     Organizer.analysis_file(standard_dev_round, "standard deviation of "+ attribute +":", path)
+
+    end_operation(listofposts, path)
+
 
 
 
@@ -370,16 +377,6 @@ def freq_grouping_prob(listofpost, attribute, one, two, three, four, five, path)
     Organizer.analysis_file(freqs[3], "The percentage of posts with " + attribute + " between " + str(three)+ "and" + str(four) + " is: ", path)
     Organizer.analysis_file(freqs[4], "The percentage of posts with " + attribute + " between " + str(four)+ "and" + str(five) + " is: ", path)
     Organizer.analysis_file(freqs[5], "The percentage of posts with " + attribute + " above " + str(five)+ "is ", path)
-
-
-
-
-
-
-
-
-
-
 
 
 
