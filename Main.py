@@ -109,7 +109,6 @@ Q: Quit """)
         sys.exit
 
 
-
 def statistical_menu(listofpost, path):
     print(30 * '-')
     print("   S T A T I S T I C S  - M E N U")
@@ -148,11 +147,18 @@ def clear():
 def sort_highlow(listofpost, path):
     # Quick_sort returns a sorted list on attribute high
     attribute = ""
-    choice = input("which attribute would you like to sort the list on?: \n "
-                   "1. likes \n "
-                   "2. replys \n"
-                   " 3. retweets \n"
-                   " 4. length of message")
+    print(30 * '-')
+    print("   S O R T I N G - M E N U")
+    print(30 * '-')
+
+    print("""Which attribute would you like to sort the list on?:
+1. likes
+2. replys
+3. retweets
+4. length of message""")
+
+    print(30 * '-')
+    choice = input('Enter your choice : ')
     if choice == "1":
         attribute = 'likes'
     elif choice == '2':
@@ -163,25 +169,23 @@ def sort_highlow(listofpost, path):
         attribute = 'lenMessage'
     lenlist = len(listofpost)
 
-    tweet.print_tweetlist(listofpost)
-
-
+    # tweet.print_tweetlist(listofpost) just sorts in the JSON file
 
     Sorting.quick_sort(listofpost, 0, lenlist-1, attribute)
     Organizer.overwrite_file(path,listofpost)
+    print(30 * '-')
+    print("Sorting done. json-file overwritten with sorted dataset")
+    print(30 * '-')
+    print("Would you also like to get the median calculated on same " + attribute + "?"
+                    "\n  1. Yes, calculate it and save in Json-analysisfile \n  2. no")
 
-    print(" sorting done. json-file overwritten with sorted dataset")
+    print(30 * '-')
+    medianpos = input('Enter your choice : ')
 
-    medianpos = input("would you also like to get the median calculated on same " + attribute + "?"
-                    "\n  1. Yes, calculate it, print to console, and save in Json-analysisfile \n  2. no")
     if medianpos == "1":
         medianvalue = statistical.get_median(listofpost, attribute)
-        print("the median value of the attribute " + attribute + "is " + str(medianvalue)+ "\n\n\n")
+        print("the median value of the attribute " + attribute + " is " + str(medianvalue))
         Organizer.analysis_file(medianvalue, "the median of " + attribute + " is: ", path)
-
-
-
-
 
     end_operation(listofpost, path)
 
@@ -192,11 +196,6 @@ def word_prob(listofposts, path):
     print("The probability of the word: " + str(searchword) + " being in this users posts, is " + str(prob) + "% ")
     Organizer.analysis_file(str(prob) + "%", "The probability of the word " + str(searchword) + " being in this users posts, is this", path)
     end_operation(listofposts, path)
-
-
-
-
-
 
 
 def word_searching(listofpost, path):
@@ -244,12 +243,15 @@ def word_correlate(List, path):
 
 
 def get_standarddev(listofposts, path):
-    choice = input("which attribute would you like to get the standard deviation of?: \n "
-                   "1. likes \n "
-                   "2. replys \n"
-                   " 3. retweets \n"
-                   " 4. length of message\n"
-                   " 5. Total reactions ")
+    print(30 * '-')
+    print("""which attribute would you like to get the standard deviation of?:
+1. likes
+2. replys
+3. retweets
+4. length of message
+5. Total reactions """)
+    print(30 * '-')
+    choice = input("Enter your choice : ")
 
     if choice == "1":
         attribute = 'likes'
@@ -264,25 +266,27 @@ def get_standarddev(listofposts, path):
 
     standard_dev = statistical.standard_deviation(listofposts, attribute)
     standard_dev_round = int(standard_dev)
-
-    print("\n standard deviation is:" +  str(standard_dev_round))
+    print(30 * '-')
+    print("Standard deviation is:" +  str(standard_dev_round))
 
     Organizer.analysis_file(standard_dev_round, "standard deviation of "+ attribute +":", path)
 
     end_operation(listofposts, path)
 
 
-
-
 def freq_grouping(listofpost, path):
 
     attribute = ""
-    choice = input("which attribute would you like to perfom the grouping on?: \n "
-                   "1. likes \n "
-                   "2. replys \n"
-                   " 3. retweets \n"
-                   " 4. length of message\n"
-                   " 5. Total reactions ")
+    print(30 * '-')
+    print("""Which attribute would you like to get the standard deviation of?:
+1. likes
+2. replys
+3. retweets
+4. length of message
+5. Total reactions """)
+    print(30 * '-')
+    choice = input("Enter your choice : ")
+
     if choice == "1":
         attribute = 'likes'
     elif choice == '2':
@@ -293,13 +297,16 @@ def freq_grouping(listofpost, path):
         attribute = 'lenMessage'
     elif choice == "5":
         attribute = 'reactions'
-
-    groupings = input("and how would you like to group the data? \n"
+    print(30 * '-')
+    print("How would you like to group the data? \n"
                       "1. 5, 10, 20, 30, 40 \n"
                       "2. 50, 100, 150 \n"
                       "3. 100, 300, 500, 700, 1000 \n"
                       "4. 500, 1000, 3000, 5000, 8000 \n"
                       "5. 1500, 5000, 10000, 15.000, 20.000 \n")
+
+    print(30 * '-')
+    groupings = input("Enter your choice : ")
     if groupings == "1":
         one = 5
         two = 10
@@ -332,17 +339,16 @@ def freq_grouping(listofpost, path):
         five = 20000
 
     freqs = statistical.frequency_grouping(listofpost, attribute, one, two, three, four, five)
+    print(30 * '-')
+    print("Size of list:" + str(len(listofpost)))
+    print(30 * '-')
 
-    print("size of list:")
-
-    print(len(listofpost))
-
-    print("there are " + str(freqs[0]) + " posts with " + attribute + " below " + str(one))
-    print("there are " + str(freqs[1]) + " posts with " + attribute + " between " + str(one) + " and " + str(two))
-    print("there are " + str(freqs[2]) + " posts with " + attribute + " between " + str(two) + " and " + str(three))
-    print("there are " + str(freqs[3]) + " posts with " + attribute + " between " + str(three) + " and " + str(four))
-    print("there are " + str(freqs[4]) + " posts with " + attribute + " between " + str(four) + " and " + str(five))
-    print("there are " + str(freqs[5]) + " posts with " + attribute + " above " + str(five))
+    print(str(freqs[0]) + " posts with " + attribute + " below " + str(one))
+    print(str(freqs[1]) + " posts with " + attribute + " between " + str(one) + " and " + str(two))
+    print(str(freqs[2]) + " posts with " + attribute + " between " + str(two) + " and " + str(three))
+    print(str(freqs[3]) + " posts with " + attribute + " between " + str(three) + " and " + str(four))
+    print(str(freqs[4]) + " posts with " + attribute + " between " + str(four) + " and " + str(five))
+    print(str(freqs[5]) + " posts with " + attribute + " above " + str(five))
 
     Organizer.analysis_file(freqs[0], " amount of " + attribute + " below "+ str(one), path)
     Organizer.analysis_file(freqs[1], " amount of " + attribute + " between " + str(one) + " and " + str(two), path)
@@ -350,8 +356,10 @@ def freq_grouping(listofpost, path):
     Organizer.analysis_file(freqs[3], " amount of " + attribute + " between " + str(three) + " and " + str(four), path)
     Organizer.analysis_file(freqs[4], " amount of " + attribute + " between " + str(four) + " and " + str(five), path)
     Organizer.analysis_file(freqs[5], " amount of " + attribute + " above " + str(five), path)
-
-    prob_choice = input("would you also like get these groupings shown as percentages? \n 1. yes \n 2. no")
+    print(30 * '-')
+    print("Would you also like get these groupings shown as percentages? \n 1. Yes \n 2. Yo")
+    print(30 * '-')
+    prob_choice = input("Enter your choice : ")
     if prob_choice == "1":
         freq_grouping_prob(listofpost, attribute, one, two, three, four, five, path)
 
@@ -361,15 +369,12 @@ def freq_grouping_prob(listofpost, attribute, one, two, three, four, five, path)
 
     freqs = Probalility.prob_of_groupings(listofpost, attribute, one, two, three, four, five)
 
-
-
-
-    print("the percentage of the posts with "+attribute+ " below " + str(one) +" is "  + str(freqs[0]))
-    print("the percentage of the posts with "+attribute+ " between " + str(one) +" and " + str(two) + " is " + str(freqs[1]) + "%")
-    print("the percentage of the posts with " +attribute+" between " + str(two) +" and " + str(three) + " is " + str(freqs[2]) + "%")
-    print("the percentage of the posts with "+attribute+ " between " + str(three)+ " and " + str(four) + " is " + str(freqs[3])  + "%")
-    print("the percentage of the posts with "+attribute+ " between  " + str(four) +" and " + str(five)  + " is "  + str(freqs[4])  + "%")
-    print("the percentage of the posts with "+attribute+  " over " + str(five) + " is "  + str(freqs[5]) + "%")
+    print("The percentage of the posts with "+attribute+ " below " + str(one) +" is "  + str(freqs[0]))
+    print("The percentage of the posts with "+attribute+ " between " + str(one) +" and " + str(two) + " is " + str(freqs[1]) + "%")
+    print("The percentage of the posts with " +attribute+" between " + str(two) +" and " + str(three) + " is " + str(freqs[2]) + "%")
+    print("The percentage of the posts with "+attribute+ " between " + str(three)+ " and " + str(four) + " is " + str(freqs[3])  + "%")
+    print("The percentage of the posts with "+attribute+ " between  " + str(four) +" and " + str(five)  + " is "  + str(freqs[4])  + "%")
+    print("The percentage of the posts with "+attribute+  " over " + str(five) + " is "  + str(freqs[5]) + "%")
 
     Organizer.analysis_file(freqs[0], "The percentage of posts with " + attribute + " below " + str(one) + " is: ", path)
     Organizer.analysis_file(freqs[1], "The percentage of posts with " + attribute + " between " + str(one)+ "and" + str(two) + " is: ", path)
@@ -377,7 +382,6 @@ def freq_grouping_prob(listofpost, attribute, one, two, three, four, five, path)
     Organizer.analysis_file(freqs[3], "The percentage of posts with " + attribute + " between " + str(three)+ "and" + str(four) + " is: ", path)
     Organizer.analysis_file(freqs[4], "The percentage of posts with " + attribute + " between " + str(four)+ "and" + str(five) + " is: ", path)
     Organizer.analysis_file(freqs[5], "The percentage of posts with " + attribute + " above " + str(five)+ "is ", path)
-
 
 
 def get_average(listofpost, path):
@@ -402,14 +406,18 @@ def get_average(listofpost, path):
 
     end_operation(listofpost, path)
 
+
 def end_operation(listofpost, path):
+    print(30 * '-')
     print("Want to return to main menu?")
-    choice = input("""
-      1. Yes
-      2. No
-      3. go to statistical menu
-      4. go to wordsearch menu
-      Please enter your choice: """)
+    print(30 * '-')
+    print("""
+1. Yes
+2. No
+3. go to statistical menu
+4. go to wordsearch menu """)
+    print(30 * '-')
+    choice = input('Enter your choice : ')
 
     if choice == "1":
         main_menu()
@@ -424,56 +432,4 @@ def end_operation(listofpost, path):
         end_operation(listofpost, path)
 
 
-
 main_menu()
-
-
-"""
-Iterating through all attributes
-and returning each
-"""
-#for u in allpost:
- #   u.print_all()
-
-
-"""
-Reversesort_replys is returning the sorted list reversed 
-"""
-#reversesort_replys = newscrape.bubble_sort_reverse('replys')
-
-"""
-Averagelikes returns the average of Eg. 'likes
-"""
-#averagelikes = statistical.get_average(sortedList_likes, 'likes')
-
-"""
-Medianlikes returns the the median of a sorted list
-"""
-#medianlikes = statistical.get_median(sortedList_likes, 'likes')
-
-"""
-Reply_frequence returns the frequency of chosen groupings
-"""
-#Reply_frequence = statistical.frequency_grouping(sortedList_likes, 'replys', 1000, 5000, 10000,20000, 50000)
-
-"""
-Deviation returns the deviation of a chosen attribute
-"""
-#deviation = statistical.standard_deviation(allpost, 'likes')
-
-"""
-WordSearch searches how many time a word appears in the scraped list
-"""
-#WordSearch.search_word(sortedList_likes, "Mexico")
-#WordSearch.word_counter(sortedList_likes)
-#WordSearch.word_counter2(sortedList_likes)
-
-#listOfwords = WordSearch.word_correlation(sortedList_likes, 'likes', 'Citizenship')
-#for searchWord in listOfwords:
-    #searchWord.print_all()
-
-"""
-Creates a project directory and writes data to a Json file
-"""
-#Organizer.create_project(twitterhandle)
-#Organizer.write_file_json(allpost, twitterhandle)
