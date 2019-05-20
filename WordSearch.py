@@ -13,7 +13,7 @@ The WordSearch class searches the message attribute for a chosen word and return
 
 class WordSearch:
 
-    # return amount of cursewords
+    # returns amoint of posts with certain word
     # searchword has to be a string
     @classmethod
     def search_word(self, List, searchword):

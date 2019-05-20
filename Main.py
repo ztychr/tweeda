@@ -4,6 +4,7 @@ from Post import tweet
 from Sorting import Sorting
 from Statistical import statistical
 from WordSearch import WordSearch
+from Probability import Probalility
 import sys  # sys.exit command to quit/logout of the application
 
 
@@ -60,7 +61,7 @@ def analyze_menu():
     print("************Analyze menu**************")
 
     choice = input("""
-    1: Statistical operation
+    1: Statistical operations and sorting
     2: Word correlations
     M: Back to main menu
     Q: Quit
@@ -91,6 +92,7 @@ def wordsearch_menu(listofpost, path):
         1: Search for specific word \n
         2: get the most common words\n
         3. Check if containing certain words make a post more or less popular\n  
+        4. Check the probability of a post containing a certain word
         Q: Quit
         \n
         Please enter your choice: """)
@@ -101,6 +103,8 @@ def wordsearch_menu(listofpost, path):
         word_counting(listofpost, path)
     if choice == "3":
         word_correlate(listofpost, path)
+    if choice == "4":
+        word_prob(listofpost, path)
     elif choice == "Q" or "q":
         sys.exit
 
@@ -133,7 +137,7 @@ def statistical_menu(listofpost, path):
     else:
         print("You must only select either 1,2, 3, M or Q.")
         print("Please try again")
-        statistical_menu()
+        statistical_menu(listofpost, path)
 
 
 def clear():
@@ -162,7 +166,7 @@ def sort_highlow(listofpost, path):
 
 
 
-    Sorting.quick_sort(listofpost, 0, lenlist, attribute)
+    Sorting.quick_sort(listofpost, 0, lenlist-1, attribute)
     Organizer.overwrite_file(path,listofpost)
 
     print(" sorting done. json-file overwritten with sorted dataset")
@@ -179,6 +183,20 @@ def sort_highlow(listofpost, path):
 
 
     end_operation(listofpost, path)
+
+
+def word_prob(listofposts, path):
+    searchword = input("\n which word would you like to get probalilities of occurence for?: ")
+    prob = Probalility.prob_of_word(listofposts, searchword)
+    print("The probability of the word: " + str(searchword) + " being in this users posts, is " + str(prob) + "% ")
+    Organizer.analysis_file(str(prob) + "%", "The probability of the word " + str(searchword) + " being in this users posts, is this", path)
+    end_operation(listofposts, path)
+
+
+
+
+
+
 
 def word_searching(listofpost, path):
 
@@ -308,6 +326,10 @@ def freq_grouping(listofpost, path):
 
     freqs = statistical.frequency_grouping(listofpost, attribute, one, two, three, four, five)
 
+    print("size of list:")
+
+    print(len(listofpost))
+
     print("there are " + str(freqs[0]) + " posts with " + attribute + " below " + str(one))
     print("there are " + str(freqs[1]) + " posts with " + attribute + " between " + str(one) + " and " + str(two))
     print("there are " + str(freqs[2]) + " posts with " + attribute + " between " + str(two) + " and " + str(three))
@@ -321,6 +343,38 @@ def freq_grouping(listofpost, path):
     Organizer.analysis_file(freqs[3], " amount of " + attribute + " between " + str(three) + " and " + str(four), path)
     Organizer.analysis_file(freqs[4], " amount of " + attribute + " between " + str(four) + " and " + str(five), path)
     Organizer.analysis_file(freqs[5], " amount of " + attribute + " above " + str(five), path)
+
+    prob_choice = input("would you also like get these groupings shown as percentages? \n 1. yes \n 2. no")
+    if prob_choice == "1":
+        freq_grouping_prob(listofpost, attribute, one, two, three, four, five, path)
+
+    end_operation(listofpost, path)
+
+def freq_grouping_prob(listofpost, attribute, one, two, three, four, five, path):
+
+    freqs = Probalility.prob_of_groupings(listofpost, attribute, one, two, three, four, five)
+
+
+
+
+    print("the percentage of the posts with "+attribute+ " below " + str(one) +" is "  + str(freqs[0]))
+    print("the percentage of the posts with "+attribute+ " between " + str(one) +" and " + str(two) + " is " + str(freqs[1]) + "%")
+    print("the percentage of the posts with " +attribute+" between " + str(two) +" and " + str(three) + " is " + str(freqs[2]) + "%")
+    print("the percentage of the posts with "+attribute+ " between " + str(three)+ " and " + str(four) + " is " + str(freqs[3])  + "%")
+    print("the percentage of the posts with "+attribute+ " between  " + str(four) +" and " + str(five)  + " is "  + str(freqs[4])  + "%")
+    print("the percentage of the posts with "+attribute+  " over " + str(five) + " is "  + str(freqs[5]) + "%")
+
+    Organizer.analysis_file(freqs[0], "The percentage of posts with " + attribute + " below " + str(one) + " is: ", path)
+    Organizer.analysis_file(freqs[1], "The percentage of posts with " + attribute + " between " + str(one)+ "and" + str(two) + " is: ", path)
+    Organizer.analysis_file(freqs[2], "The percentage of posts with " + attribute + " between " + str(two)+ "and" + str(three) + " is: ", path)
+    Organizer.analysis_file(freqs[3], "The percentage of posts with " + attribute + " between " + str(three)+ "and" + str(four) + " is: ", path)
+    Organizer.analysis_file(freqs[4], "The percentage of posts with " + attribute + " between " + str(four)+ "and" + str(five) + " is: ", path)
+    Organizer.analysis_file(freqs[5], "The percentage of posts with " + attribute + " above " + str(five)+ "is ", path)
+
+
+
+
+
 
 
 
@@ -352,16 +406,27 @@ def get_average(listofpost, path):
     end_operation(listofpost, path)
 
 def end_operation(listofpost, path):
-    print("Want to return to statistical menu?")
+    print("Want to return to main menu?")
     choice = input("""
       1. Yes
       2. No
+      3. go to statistical menu
+      4. go to wordsearch menu
       Please enter your choice: """)
 
     if choice == "1":
-        statistical_menu(listofpost, path)
-    elif choice == "2":
+        main_menu()
+    if choice == "2":
         sys.exit()
+    if  choice == "3":
+        statistical_menu(listofpost, path)
+    if choice == "4":
+        wordsearch_menu(listofpost, path)
+    else:
+        print("please enter one of the options \n")
+        end_operation(listofpost, path)
+
+
 
 main_menu()
 

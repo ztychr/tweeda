@@ -13,13 +13,14 @@ class Sorting:
 
     @classmethod
     def bubble_sort(cls, List, attrs):
+        bubbleruns = 0
         try:
             if attrs != 'message' and attrs != 'userName':
                 for i in range(0, len(List) - 1):
 
                     for j in range(0, len(List) - 1 - i, 1):
-                        attribute1 = getattr(List[j + 1], attrs)
                         attribute = getattr(List[j], attrs)
+                        attribute1 = getattr(List[j + 1], attrs)
 
                         if attribute > attribute1:
                             cls.swap(List, j, j + 1)
@@ -82,10 +83,10 @@ class Sorting:
 
     @classmethod
     def quick_sort(self, List, low, high, attrs):
-        high1 = high - 1
-        if low >= high1:
+
+        if low >= high:
             return List
-        pivot_index = self.partition(List, low, high1, attrs)
+        pivot_index = self.partition(List, low, high, attrs)
         self.quick_sort(List, low, pivot_index - 1, attrs)
         self.quick_sort(List, pivot_index + 1, high, attrs)
 

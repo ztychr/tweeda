@@ -19,12 +19,15 @@ class statistical:
 
         average = sum / amount
 
-        return average
+        averageround = int(average)
+
+        return averageround
 
     @classmethod
     # only works for lists that are sorted on the specific attribute that you want to get the median of
 
     def get_median(self, list, attrs):
+
         median = 0
         lenght = len(list)
 
@@ -59,12 +62,15 @@ class statistical:
                 frequency1 = 0
                 frequency2 = 0
                 frequency3 = 0
-                lastgrouping = 0
+                lastgrouping = grouping3
                 ceiling_break = 0
                 if grouping4 != None:
                     frequency4 = 0
+                    lastgrouping = grouping4
                 if grouping5 != None:
                     frequency5 = 0
+                    lastgrouping = grouping5
+
                 for item in list:
                     attribute = getattr(item, attrs)
 
@@ -73,7 +79,7 @@ class statistical:
                     if attribute > grouping1 and attribute < grouping2:
                         frequency2 = frequency2 + 1
                     if attribute > grouping2 and attribute < grouping3:
-                        lastgrouping = grouping5
+
                         frequency3 = frequency3 + 1
 
                     if grouping4 != None:
@@ -88,8 +94,13 @@ class statistical:
 
                     if (attribute > lastgrouping):
                         ceiling_break = ceiling_break + 1
+                if grouping4 is None and grouping4 is None:
+                    return frequency1, frequency2, frequency3, ceiling_break
+                if grouping4 is not None and grouping5 is None:
+                    return frequency1, frequency2, frequency3, frequency4, ceiling_break
+                if grouping4 is not None and grouping5 is not None:
+                    return frequency1, frequency2, frequency3, frequency4, frequency5, ceiling_break
 
-                return frequency1, frequency2, frequency3, frequency4, frequency5, ceiling_break
             else:
                 return print("you cant sort on message or username \n those are strings")
         except:
@@ -124,7 +135,8 @@ class statistical:
 
         AverageSquare = sumofSquared/listLen
         deviation = math.sqrt(AverageSquare)
-        return deviation
+        rdeviation = round(deviation, 2)
+        return rdeviation
         #  return deviation
         # get square root of squaredMean = standard_deviation
 

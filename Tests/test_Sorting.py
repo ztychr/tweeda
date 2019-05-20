@@ -18,7 +18,7 @@ class test_Sorting(unittest.TestCase):
         Creating the list of 'dumb' post-objects that can be sorted on by both algorithms for comparison
         """
         self.postList = []
-        for i in range(0,450):
+        for i in range(0,21000):
             num = random.randint(0,100)
             tempPost = tweet("tempPost", num, 0, 0, "somemessage", "1337")
             self.postList.append(tempPost)
@@ -27,12 +27,12 @@ class test_Sorting(unittest.TestCase):
         Also creating a very short list, for checking how tthe sorting works out
         """
         self.shortlist = []
-        post_one = tweet("apost", 3, 0,0, "somemesage", "256")
-        post_two = tweet("apost", 4, 0, 0, "somemesage", "256")
-        post_three = tweet("apost", 1, 0, 0, "somemesage", "256")
-        post_four = tweet("apost", 2, 0, 0, "first2", "256")
-        post_five = tweet("apost", 2, 0, 0, "second2", "256")
+        post_four = tweet("apost", 3, 0, 0, "first2", "256")
+        post_one = tweet("apost", 4, 0,0, "somemesage", "256")
+        post_two = tweet("apost", 5, 0, 0, "somemesage", "256")
+        post_three = tweet("apost", 2, 0, 0, "somemesage", "256")
         post_six = tweet("apost", 0, 0, 0, "somemesage", "256")
+        post_five = tweet("apost", 3, 0, 0, "second2", "256")
         post_seven = tweet("apost", 15, 0, 0, "somemesage", "256")
 
         self.shortlist.append(post_one)
@@ -65,7 +65,9 @@ class test_Sorting(unittest.TestCase):
 
 
         lenlist = len(self.postList)
-        Sorting.quick_sort(self.postList, 0, lenlist, 'likes')
+        Sorting.quick_sort(self.postList, 0, lenlist-1, 'likes')
+
+
 
 
         print("Quicksort test done")
@@ -91,6 +93,39 @@ class test_Sorting(unittest.TestCase):
         self.assertEqual(SortedList[4].get_likes(), 3)
         self.assertEqual(SortedList[5].get_likes(), 4)
         self.assertEqual(SortedList[6].get_likes(), 15)
+
+    def test_quick_sort1(self):
+        """
+        Testing functionality  for 'Quicksort'
+
+        """
+
+        lenoflist = len(self.shortlist)
+        Sorting.quick_sort(self.shortlist, 0, lenoflist-1, 'likes')
+
+        tweet.print_tweetlist(self.shortlist)
+
+        self.assertEqual(self.shortlist[0].get_likes(), 0)
+        self.assertEqual(self.shortlist[1].get_likes(), 1)
+        self.assertEqual(self.shortlist[2].get_likes(), 2)
+        self.assertEqual(self.shortlist[3].get_likes(), 2)
+        self.assertEqual(self.shortlist[2].get_message(), "first2")
+        self.assertEqual(self.shortlist[3].get_message(), "second2")
+        self.assertEqual(self.shortlist[4].get_likes(), 3)
+        self.assertEqual(self.shortlist[5].get_likes(), 4)
+        self.assertEqual(self.shortlist[6].get_likes(), 15)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
