@@ -240,7 +240,7 @@ def word_correlate(List, path):
     choiceword = input("type here: ")
 
     difference = WordSearch.word_correlation(List, choiceword)
-    if difference == None:
+    if difference == 0:
         print("\n that word is nowhere to be found in the posts that you are analysing")
         word_correlate(List, path)
 
