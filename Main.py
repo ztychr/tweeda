@@ -37,18 +37,29 @@ Q: Quit """)
 def scrape_menu():
     twitterhandle = input("\nEnter account to scrape: ")
     tweetamount = input("Enter amount of tweets: ")
-    tweetamountInt = int(tweetamount)
+    try:
+        tweetamountInt = int(tweetamount)
+    except:
+        print("you have to provide a number as amount, and not letters. try again")
+        scrape_menu()
 
     newscrape = Scraping(twitterhandle, tweetamountInt) # Object of the user name and amounts of tweets to be scraped
     newscrape.scrape_data() # Scarping object
 
 
     allpost = newscrape.get_posts() # Returns list of posts
+    try:
+
+        Organizer.create_project(twitterhandle)
+        Organizer.write_file_json(allpost, twitterhandle)
+        main_menu()
 
 
-    Organizer.create_project(twitterhandle)
-    Organizer.write_file_json(allpost, twitterhandle)
-    main_menu()
+    except:
+        print("The data can not be saved. Are you sure that you provided valid input?")
+        scrape_menu()
+
+
 
 
 def analyze_menu():
