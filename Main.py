@@ -247,11 +247,12 @@ def word_correlate(List, path):
     if difference>0:
         print("posts containing the word " , choiceword, " have generally ", str(difference), " more reactions")
         Organizer.analysis_file("posts with the word " + choiceword + " has following amount more reactions than average: ", difference, path)
+
     if difference<0:
         print("posts containing the word " , choiceword, " have generally ", str(difference), " fewer reactions")
         Organizer.analysis_file( difference, "posts with the word " + choiceword + " has following amount fewer reactions than average: ",path)
 
-        end_operation(list, path)
+    end_operation(list, path)
 
 
 def get_standarddev(listofposts, path):
