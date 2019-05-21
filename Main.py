@@ -47,15 +47,16 @@ def scrape_menu():
     newscrape.scrape_data() # Scarping object
 
 
+
     allpost = newscrape.get_posts() # Returns list of posts
-    try:
+    if newscrape.r.status_code == 200:
 
         Organizer.create_project(twitterhandle)
         Organizer.write_file_json(allpost, twitterhandle)
         main_menu()
 
 
-    except:
+    else:
         print("The data can not be saved. Are you sure that you provided valid input?")
         scrape_menu()
 

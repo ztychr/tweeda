@@ -42,10 +42,10 @@ class Organizer:
     @classmethod
     def write_file_json(self, listofposts, twitterhandle):
 
+        path = os.getcwd() + "/" +"Jsondata_files" + "/"+  twitterhandle
 
         specpath = os.getcwd() + "/" +"Jsondata_files" + "/"+ twitterhandle + "/" + twitterhandle + ".json"
 
-        path = os.getcwd() + "/" +"Jsondata_files" + "/"+  twitterhandle
         templist = []
 
         print("specpath")
