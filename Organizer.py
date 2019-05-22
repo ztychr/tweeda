@@ -48,8 +48,6 @@ class Organizer:
 
         templist = []
 
-        print("specpath")
-        print(specpath)
         if not os.path.isfile(specpath):
             print("making and writing file")
 

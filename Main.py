@@ -15,7 +15,7 @@ def main_menu():
     print(30 * '-')
 
     print("""
-1: Scrape live data
+1: Collect new data
 2: Analyze existing data
 Q: Quit """)
 
@@ -35,7 +35,7 @@ Q: Quit """)
 
 
 def scrape_menu():
-    twitterhandle = input("\nEnter account to scrape: ")
+    twitterhandle = input("\nEnter account to collect data from: ")
     tweetamount = input("Enter amount of tweets: ")
     try:
         tweetamountInt = int(tweetamount)
@@ -71,8 +71,8 @@ def analyze_menu():
     print(30 * '-')
 
     print("""
-1: Statistical operations and sorting
-2: Word correlations
+1: Go to Statistical and sorting menu
+2: Go to Word searching menu
 M: Back to main menu
 Q: Quit """)
 
@@ -240,7 +240,7 @@ def word_correlate(List, path):
     choiceword = input("type here: ")
 
     difference = WordSearch.word_correlation(List, choiceword)
-    if difference == 0:
+    if difference == 0 or None:
         print("\n that word is nowhere to be found in the posts that you are analysing")
         word_correlate(List, path)
 

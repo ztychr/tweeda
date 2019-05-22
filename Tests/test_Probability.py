@@ -72,7 +72,16 @@ class test_probabilty(unittest.TestCase):
         freqs = Probalility.prob_of_groupings(self.alist, 'likes', 3, 6, 12, 21, 31)
 
         print(freqs)
-        #print(freqs)
+
+        self.assertEqual(freqs[0], 40)
+        self.assertEqual(freqs[1], 20)
+        self.assertEqual(freqs[2], 20)
+        self.assertEqual(freqs[3], 20)
+        self.assertEqual(freqs[4], 0)
+        self.assertEqual(freqs[5], 0)
+
+
+
 
 
 
