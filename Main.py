@@ -101,7 +101,7 @@ def wordsearch_menu(listofpost, path):
 
     print("""
 1: Search for specific word 
-2: get the most common words
+2: Get the most common words
 3. Check if containing certain words make a post more or less popular
 4. Check the probability of a post containing a certain word
 Q: Quit """)
@@ -129,8 +129,8 @@ def statistical_menu(listofpost, path):
     print("""
 1: Sort from high to low, and get median
 2: Get calculated average for all attributes
-3: get Standard deviation
-4. get frequency groupings
+3: Get Standard deviation
+4. Get frequency groupings
 Q: Quit """)
 
     print(30 * '-')
@@ -427,8 +427,8 @@ def end_operation(listofpost, path):
     print("""
 1. Yes
 2. No
-3. go to statistical menu
-4. go to wordsearch menu """)
+3. Go to statistical menu
+4. Go to wordsearch menu """)
     print(30 * '-')
     choice = input('Enter your choice : ')
 
