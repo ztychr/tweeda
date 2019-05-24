@@ -86,5 +86,5 @@ class WordSearch:
 
             return new
         else:
-            return None
+            return 0
 
