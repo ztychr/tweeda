@@ -59,18 +59,23 @@ class statistical:
     def frequency_grouping(self, list, attrs, grouping1, grouping2, grouping3, grouping4=None, grouping5=None):
         try:
             if (attrs != 'message' or attrs != 'userName'):
+                #Alle frekvenserne bliver sat lig med nul
                 frequency1 = 0
                 frequency2 = 0
                 frequency3 = 0
                 lastgrouping = grouping3
                 ceiling_break = 0
+
+                #Der bliver tjekket for overloading
                 if grouping4 != None:
                     frequency4 = 0
                     lastgrouping = grouping4
                 if grouping5 != None:
                     frequency5 = 0
                     lastgrouping = grouping5
-
+                #Listen bliver løbet igennem, og hvis den bestemte attribut befinder
+                #sig inden for en bestemt grouping, bliver den relevante frequency
+                #inkrementeret
                 for item in list:
                     attribute = getattr(item, attrs)
 

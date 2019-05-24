@@ -51,26 +51,29 @@ class Sorting:
 
     @classmethod
     def partition(self, List, low, high, attrs):
+        #posPartioons er en liste med mulige kandidater som omdrejningspunkt
         posPartitions = []
-
         middle = (low + high)// 2
         posPartitions.append(List[low])
         posPartitions.append(List[middle])
         posPartitions.append(List[high])
+        #bubblesort sorterer de tre elementer
         self.bubble_sort(posPartitions, attrs)
-
+        #omdrejningspunktet er medianen af den sorterede liste
         pivot_value = statistical.get_median(posPartitions, attrs)
 
+        #pivot_value er værdien det ønskede element, ikke indeks. Så vi finder indekset.
         if getattr(List[low], attrs) == pivot_value:
             pivot_index = low
         elif getattr(List[middle], attrs) == pivot_value:
             pivot_index = middle
         elif getattr(List[high], attrs) == pivot_value:
-            pivot_index = middle
+            pivot_index = high
 
         self.swap(List, pivot_index, high)
         i = low
-
+        #listen bliver itereret igennem, og vi bytter de mindste elementer til den venstre side
+        # og de største ti lden højre side
         for j in range(low, high, 1):
 
             attr = getattr(List[j], attrs)

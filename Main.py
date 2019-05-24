@@ -167,7 +167,8 @@ def sort_highlow(listofpost, path):
 1. likes
 2. replys
 3. retweets
-4. length of message""")
+4. length of message
+5. Total reactions""")
 
     print(30 * '-')
     choice = input('Enter your choice : ')
@@ -179,6 +180,8 @@ def sort_highlow(listofpost, path):
         attribute = "retweets"
     elif choice == "4":
         attribute = 'lenMessage'
+    elif choice == '5':
+        attribute = 'reactions'
     lenlist = len(listofpost)
 
     # tweet.print_tweetlist(listofpost) just sorts in the JSON file
