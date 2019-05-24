@@ -101,7 +101,7 @@ def wordsearch_menu(listofpost, path):
 
     print("""
 1: Search for specific word 
-2: get the most common words
+2: Get the most common words
 3. Check if containing certain words make a post more or less popular
 4. Check the probability of a post containing a certain word
 Q: Quit """)
@@ -129,8 +129,8 @@ def statistical_menu(listofpost, path):
     print("""
 1: Sort from high to low, and get median
 2: Get calculated average for all attributes
-3: get Standard deviation
-4. get frequency groupings
+3: Get Standard deviation
+4. Get frequency groupings
 Q: Quit """)
 
     print(30 * '-')
@@ -373,7 +373,7 @@ def freq_grouping(listofpost, path):
     Organizer.analysis_file(freqs[4], " amount of " + attribute + " between " + str(four) + " and " + str(five), path)
     Organizer.analysis_file(freqs[5], " amount of " + attribute + " above " + str(five), path)
     print(30 * '-')
-    print("Would you also like get these groupings shown as percentages? \n 1. Yes \n 2. Yo")
+    print("Would you also like get these groupings shown as percentages? \n 1. Yes \n 2. No")
     print(30 * '-')
     prob_choice = input("Enter your choice : ")
     if prob_choice == "1":
@@ -385,7 +385,7 @@ def freq_grouping_prob(listofpost, attribute, one, two, three, four, five, path)
 
     freqs = Probalility.prob_of_groupings(listofpost, attribute, one, two, three, four, five)
 
-    print("The percentage of the posts with "+attribute+ " below " + str(one) +" is "  + str(freqs[0]))
+    print("The percentage of the posts with "+attribute+ " below " + str(one) +" is "  + str(freqs[0]) + "%")
     print("The percentage of the posts with "+attribute+ " between " + str(one) +" and " + str(two) + " is " + str(freqs[1]) + "%")
     print("The percentage of the posts with " +attribute+" between " + str(two) +" and " + str(three) + " is " + str(freqs[2]) + "%")
     print("The percentage of the posts with "+attribute+ " between " + str(three)+ " and " + str(four) + " is " + str(freqs[3])  + "%")
@@ -430,8 +430,8 @@ def end_operation(listofpost, path):
     print("""
 1. Yes
 2. No
-3. go to statistical menu
-4. go to wordsearch menu """)
+3. Go to statistical menu
+4. Go to wordsearch menu """)
     print(30 * '-')
     choice = input('Enter your choice : ')
 
