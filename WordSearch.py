@@ -7,15 +7,18 @@ from nltk.tokenize import word_tokenize
 nltk.download('punkt', quiet=True)
 
 """
-The WordSearch class searches the message attribute for a chosen word and returns how many times it appears
+The WordSearch has a collection of methods that search for specific words, and return some information
 """
 
 
 class WordSearch:
-
-    # returns amoint of posts with certain word
-    # searchword has to be a string
+    """
+    @:param List: list of tweet-objects
+    @:param searchword: the word that is to be searched for
+    @:returns The amount of times that the given word appears in the given list
+    """
     @classmethod
+
     def search_word(self, List, searchword):
         amounts = 0
         li = []
@@ -24,44 +27,43 @@ class WordSearch:
             if message.__contains__(searchword):
                 amounts = amounts + 1
         return amounts
+    """
+    @:param List: list of tweet-objects
+    @:returns a tuple of the five most common words. Common words are left out
+    """
     @classmethod
     def word_counter(self, List):
         allwords =[]
-
+        # 'stops' indeholder alle almindelige ord,
+        # som f.eks. "is" og "and", dem vil vi ikke tælle
         stops = set(stopwords.words('english'))
+
+        #Gennemløb af alle 'messages' i posts.
         for word in List:
             tempfiltered = []
             message = getattr(word, 'message')
-            split_it = message.split()  # split() returns list of all the words in the string
+            split_it = message.split()
+            # Hver message i listen bliver lavet om
+            # til en liste af ord som kan tilføjes til
+            #en større liste af ord
             for w in split_it:
                 if not stops.__contains__(w):
                     tempfiltered.append(w)
             allwords.extend(tempfiltered)
 
-        Counter = collections.Counter(allwords)  # Pass the split_it list to instance of Counter class.
+        #funktionen most_common() kan bruges til at finde
+        #de strings der fremgår flest gange
+        Counter = collections.Counter(allwords)
         most_occur = Counter.most_common(5)
 
 
         return most_occur
 
-    @classmethod
-    def word_counter2(self, List):
-        for word in List:
-            message = getattr(word, 'message')
-
-        en_stops = set(stopwords.words('english'))
-        word_tokens = word_tokenize(message)
-
-        filtered_sentence = [w for w in word_tokens if not w in en_stops]
-        filtered_sentence = []
-
-        for w in word_tokens:
-            if w not in en_stops:
-                filtered_sentence.append(w)
-                Counter = collections.Counter(filtered_sentence)
-                most_occur = Counter.most_common(5)
-        print(word_tokens)
-        print(most_occur)
+    """
+    @:param List: list of tweet-objects
+    @:param searchword: the word that is to be searched for
+    @:returns the amount of total reactions more or less that posts containing this word is expected to have
+    """
 
     @classmethod
     def word_correlation(self, List, searchWord):

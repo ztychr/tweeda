@@ -6,11 +6,15 @@ The statistical class sorts data upon different statistical parameters
 """
 
 class statistical:
-    @classmethod
-    # getting calculated average/mean, takes the list you want to get the average of as parameter
-    # also takes the attribute 'attrs' as an argument, this is the attribute that you want to get the average of
 
-    def get_average(self, list, attrs):  # only give list as parameter
+    """
+    method for getting an average of a certain attribute
+    @:param list. A list of tweet objects
+    @:param attrs. The attribute that the method will calculate the average of
+    @:returns The average value of the attribute in the list
+    """
+    @classmethod
+    def get_average(self, list, attrs):
         sum = 0
         amount = len(list)
         for i in range(0, amount):
@@ -22,10 +26,14 @@ class statistical:
         averageround = int(average)
 
         return averageround
+    """
+    Getting the median of a list. Only works on sorted lists 
+    Used in both Quicksort and bubblesort
+    @:param list. list of tweet-objects
+    @:param attrs. attribute that is wanted a median on 
+    """
 
     @classmethod
-    # only works for lists that are sorted on the specific attribute that you want to get the median of
-
     def get_median(self, list, attrs):
 
         median = 0
@@ -51,7 +59,20 @@ class statistical:
             median = attribute
 
         return median
+    """
+    method for getting amounts of different occurences of certain attributes
+    @:param List. list of tweets
+    @:param attrs. Attribute that is up for calculation
+    @:param grouping1. The first groupof data
+    @:param grouping2. The second group of data
+    @:param grouping3. The third group of data
+    @:param grouping4. The fourth group of data (overloaded, method can work without this one)
+    @:param grouping5. The fifth group of data (overloaded, method can work without this one)
+    @:returns 1. amounts of attribute below grouping1. 2. amounts of attributes over grouping1 and below grpuping2
+    3. amounts of attributes over grouping2 and below grpuping3 4. amounts of attribute over grouping3 and below grpuping4
+    5. amounts of attribute over grouping4 and below grpuping5 6. amounts of attribute over grouping 5
 
+    """
     @classmethod
     # returns frequency of different groupings.
     # attrs is  chosen attribute
@@ -59,23 +80,19 @@ class statistical:
     def frequency_grouping(self, list, attrs, grouping1, grouping2, grouping3, grouping4=None, grouping5=None):
         try:
             if (attrs != 'message' or attrs != 'userName'):
-                #Alle frekvenserne bliver sat lig med nul
                 frequency1 = 0
                 frequency2 = 0
                 frequency3 = 0
                 lastgrouping = grouping3
                 ceiling_break = 0
 
-                #Der bliver tjekket for overloading
                 if grouping4 != None:
                     frequency4 = 0
                     lastgrouping = grouping4
                 if grouping5 != None:
                     frequency5 = 0
                     lastgrouping = grouping5
-                #Listen bliver løbet igennem, og hvis den bestemte attribut befinder
-                #sig inden for en bestemt grouping, bliver den relevante frequency
-                #inkrementeret
+
                 for item in list:
                     attribute = getattr(item, attrs)
 
@@ -99,7 +116,7 @@ class statistical:
 
                     if (attribute > lastgrouping):
                         ceiling_break = ceiling_break + 1
-                if grouping4 is None and grouping4 is None:
+                if grouping4 is None and grouping5 is None:
                     return frequency1, frequency2, frequency3, ceiling_break
                 if grouping4 is not None and grouping5 is None:
                     return frequency1, frequency2, frequency3, frequency4, ceiling_break
@@ -110,7 +127,12 @@ class statistical:
                 return print("you cant sort on message or username \n those are strings")
         except:
             return print("the attribute you typed is not available for posts \n maybe you typed wrong?")
-
+    """
+    
+    @:param list. A list of tweet objects
+    @:param attrs. The attribute that the method will calculate the average of
+    @:returns The standard deviation of the attribute in the list
+    """
 
     @classmethod
     # getting standard deviation of the dataset, uses get_average() from above.

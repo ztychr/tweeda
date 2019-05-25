@@ -9,6 +9,10 @@ The scraping class targets the individual div classes to find specific data abou
 """
 
 class Scraping:
+    """
+    the constructor. intializes the name and amount of tweets.
+    r perfoms the HTTP-request
+    """
 
     def __init__(self, tHandle, postamounts):
 
@@ -17,7 +21,9 @@ class Scraping:
         self.postamounts = postamounts
         self.r = requests.get('https://twitter.com/' + tHandle)
 
-    # the method that actually scrapes our data. Needs to be run before any other methods are
+    """
+    This method perfoms a scrape for the scrape object, and creates a list of tweets
+    """
     def scrape_data(self):
         self.bs = BeautifulSoup(self.r.content, 'html.parser')
         print("\n")
@@ -65,7 +71,10 @@ class Scraping:
         else:
             print("User not found")
 
-    # the method that gets our list of posts. scrape_data() needs to be run before this metho
+    """
+    :returns the list that is generated from scrape_data()
+    """
+
     def get_posts(self):
         if self.tweetlist:
             return self.tweetlist
