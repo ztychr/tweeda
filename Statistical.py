@@ -27,15 +27,15 @@ class statistical:
 
         return averageround
     """
-    Getting the median of a list. Only works on sorted lists 
+    Getting the median of a list. Only works on sorted lists
     Used in both Quicksort and bubblesort
     @:param list. list of tweet-objects
-    @:param attrs. attribute that is wanted a median on 
+    @:param attrs. attribute that is wanted a median on
     """
 
     @classmethod
     def get_median(self, list, attrs):
-
+        # only works for lists that are sorted on the specific attribute that you want to get the median of
         median = 0
         lenght = len(list)
 
@@ -74,10 +74,10 @@ class statistical:
 
     """
     @classmethod
-    # returns frequency of different groupings.
-    # attrs is  chosen attribute
-    # it is required to use at least 4 grouping, but grouping 4 and 5 are overloaded, and can discarded
     def frequency_grouping(self, list, attrs, grouping1, grouping2, grouping3, grouping4=None, grouping5=None):
+        # returns frequency of different groupings.
+        # attrs is  chosen attribute
+        # it is required to use at least 4 grouping, but grouping 4 and 5 are overloaded, and can discarded
         try:
             if (attrs != 'message' or attrs != 'userName'):
                 frequency1 = 0
@@ -128,32 +128,27 @@ class statistical:
         except:
             return print("the attribute you typed is not available for posts \n maybe you typed wrong?")
     """
-    
+
     @:param list. A list of tweet objects
     @:param attrs. The attribute that the method will calculate the average of
     @:returns The standard deviation of the attribute in the list
     """
 
     @classmethod
-    # getting standard deviation of the dataset, uses get_average() from above.
-    # standard deviation can later be used to provide further analysis
     def standard_deviation(self, List, attrs):
-
-        # average = self.get_average(List, 'likes')
+        # getting standard deviation of the dataset, uses get_average() from above.
+        # standard deviation can later be used to provide further analysis
         listLen = len(List)
         # calc of mean
         # skal udskiftes med getAverage()
-        average = self.get_average(List, attrs)
-        # getting differences between datapoints and calculated average
-        #working
+        average = self.get_average(List, attrs) # getting differences between data points and calculated average
         differences = []
         for i in range(0, listLen):
             attribute = getattr(List[i], attrs)
             diff = attribute - average
             differences.append(diff)
 
-        # squaring differences
-        Squaring = []
+        Squaring = [] # squaring differences
         for i in range(0, listLen):
             square = differences[i] * differences[i]
             Squaring.append(square)
@@ -163,7 +158,5 @@ class statistical:
         AverageSquare = sumofSquared/listLen
         deviation = math.sqrt(AverageSquare)
         rdeviation = round(deviation, 2)
-        return rdeviation
-        #  return deviation
+        return rdeviation  # return deviation
         # get square root of squaredMean = standard_deviation
-

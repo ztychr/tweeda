@@ -55,8 +55,6 @@ class WordSearch:
         #de strings der fremgår flest gange
         Counter = collections.Counter(allwords)
         most_occur = Counter.most_common(5)
-
-
         return most_occur
 
     """
@@ -85,8 +83,6 @@ class WordSearch:
             differenceInAttr = newAvg_attr-avg_attr
             new = int(differenceInAttr)
 
-
             return new
         else:
             return 0
-

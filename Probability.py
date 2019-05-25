@@ -1,6 +1,7 @@
 from Statistical import statistical
 from WordSearch import WordSearch
 
+
 class Probalility(statistical, WordSearch):
     """
     @:param list. lsit of tweets
@@ -13,14 +14,10 @@ class Probalility(statistical, WordSearch):
     def prob_of_word(cls,list ,word):
 
         samplesize = cls.search_word(list, word)
-
         fullsize = len(list)
-
         decimal = samplesize / fullsize
         percent = decimal * 100
-
         percentint = int(percent)
-
         return percentint
 
     """

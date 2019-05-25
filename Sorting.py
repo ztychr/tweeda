@@ -19,7 +19,7 @@ class Sorting:
     """
     Bubblesort. The sorting algorithm which is not directly used in controller,
     but is used to secure a better perfomance for Quicksort.
-     
+
     @:param List. List of tweet-objects
     @:param attrs. Attribute for sorting
     @:returns A sorted list.
@@ -46,11 +46,11 @@ class Sorting:
 
 
     """
-    The partition method for quicksort. Partition puts all elements smaller than pivot to the left of it, 
-    and all others to the right 
+    The partition method for quicksort. Partition puts all elements smaller than pivot to the left of it,
+    and all others to the right
     Notice that bubblesort is called, and used here
     @:param List. the List of tweet-objects for sorting
-    @:param low. the lowest index of the sublist. defines where the sublist starts 
+    @:param low. the lowest index of the sublist. defines where the sublist starts
     @:param high.  The highest index of the sublist. defines where the sublist ends.
     @:param attrs. The attribute that is up for sorting
     @:returns The index that the pivot element is now placed in
@@ -100,4 +100,3 @@ class Sorting:
         pivot_index = self.partition(List, low, high, attrs)
         self.quick_sort(List, low, pivot_index - 1, attrs)
         self.quick_sort(List, pivot_index + 1, high, attrs)
-

@@ -225,35 +225,38 @@ def word_searching(listofpost, path):
 
     end_operation(listofpost, path)
 
+
 def word_counting(listofpost, path):
     result = WordSearch.word_counter(listofpost)
 
     for r in result:
         Organizer.analysis_file(r[0], "There are " + str(r[1]) + " occurences of: ", path)
-        print("there are " , str(r[1]) , "occurences of the word " , str(r[0]))
+        print("There are " , str(r[1]) , "occurences of the word " , str(r[0]))
 
-    print("this data has been dumped to json analysisfile")
+    print("This data has been dumped to json analysisfile")
     end_operation(listofpost, path)
 
 
 def word_correlate(List, path):
 
-    print("type a certain word that you would like to see correlated with a tweets totalt impact (likes+replys+ retweet)\n"
+    print("\nType a certain word that you would like to see correlated with a tweets totalt impact (likes+replys+ retweet)\n"
           "This function will compare the total impact the tweets containing this word has, compared to the 'regular' impact \n \n")
-    choiceword = input("type here: ")
+    print(30 * '-')
+    choiceword = input("Enter your choice : ")
+    print(30 * '-')
 
     difference = WordSearch.word_correlation(List, choiceword)
     if difference == 0 or None:
-        print("\n that word is nowhere to be found in the posts that you are analysing")
+        print("\n That word is nowhere to be found in the posts that you are analysing")
         word_correlate(List, path)
 
     if difference>0:
-        print("posts containing the word " , choiceword, " have generally ", str(difference), " more reactions")
+        print("Posts containing the word " , choiceword, " have generally ", str(difference), " more reactions")
         Organizer.analysis_file("posts with the word " + choiceword + " has following amount more reactions than average: ", difference, path)
 
     if difference<0:
-        print("posts containing the word " , choiceword, " have generally ", str(difference), " fewer reactions")
-        Organizer.analysis_file( difference, "posts with the word " + choiceword + " has following amount fewer reactions than average: ",path)
+        print("Posts containing the word " , choiceword, " have generally ", str(difference), " fewer reactions")
+        Organizer.analysis_file( difference, "Posts with the word " + choiceword + " has following amount fewer reactions than average: ",path)
 
     end_operation(list, path)
 
