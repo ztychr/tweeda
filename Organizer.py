@@ -7,10 +7,6 @@ The Organizer class creates a local directory
     and dumps data to a JSON file
 """
 
-# realdonaldtrump
-
-
-
 
 class Organizer:
 
