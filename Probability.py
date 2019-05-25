@@ -1,6 +1,7 @@
 from Statistical import statistical
 from WordSearch import WordSearch
 
+
 class Probalility(statistical, WordSearch):
     #getting the probability of a post in a list contains a certain word
 
@@ -8,14 +9,10 @@ class Probalility(statistical, WordSearch):
     def prob_of_word(cls,list ,word):
 
         samplesize = cls.search_word(list, word)
-
         fullsize = len(list)
-
         decimal = samplesize / fullsize
         percent = decimal * 100
-
         percentint = int(percent)
-
         return percentint
 
     @classmethod
@@ -36,9 +33,6 @@ class Probalility(statistical, WordSearch):
             percent = int(percent)
 
             percents.append(percent)
-
-
-
 
         return percents[0], percents[1], percents[2], percents[3], percents[4], percents[5]
 

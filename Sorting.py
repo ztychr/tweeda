@@ -1,10 +1,10 @@
 from Statistical import statistical
 
 
-
 class Sorting:
     # bubblesort algorthm that sorts low-high. The attribute that you would like to sort is passed as parameter
     # takes list of posts as parameter
+
     @classmethod
     def swap(cls, nums, i, j):
         temp = nums[i]
@@ -30,10 +30,10 @@ class Sorting:
         except:
             return print("the attribute you typed is not available for posts \n maybe you typed wrong?")
 
-    # bubblesort algorithm that sorts high-low. the attribute that you would like to sort on is passed as parameter
 
     @classmethod
     def bubble_sort_reverse(cls, List, attrs):
+        # bubblesort algorithm that sorts high-low. the attribute that you would like to sort on is passed as parameter
 
         try:
             if attrs != 'message' and attrs != 'userName':

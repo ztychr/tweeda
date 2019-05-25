@@ -5,8 +5,6 @@ The class of our tweet/post object. Is made so that we have a list of objects th
 
 
 class tweet:
-
-
     def __init__(self, userName, likes, replys, retweets, message, ID):
         self.userName = userName
         self.likes = likes
@@ -34,8 +32,8 @@ class tweet:
     def get_ID(self):
         return self.ID
 
-    #simply a method to print all attribute of an object
     def print_all(self):
+        # simply a method to print all attribute of an object
         print("username: " + self.userName)
         print("likes: " + str(self.likes))
         print("replys: " + str(self.replys))
@@ -46,12 +44,9 @@ class tweet:
         print("\n\n")
         return self.userName, self.likes,self.replys,self.retweets,self.message,self.lenMessage
 
-    #method to print through a list of Tweets
-
     @classmethod
-
     def print_tweetlist(self, listofposts):
-
+        # method to print through a list of Tweets
         for i in listofposts:
             i.print_all()
 

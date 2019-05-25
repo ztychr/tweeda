@@ -12,9 +12,9 @@ The WordSearch class searches the message attribute for a chosen word and return
 
 
 class WordSearch:
-
     # returns amoint of posts with certain word
     # searchword has to be a string
+
     @classmethod
     def search_word(self, List, searchword):
         amounts = 0
@@ -40,8 +40,6 @@ class WordSearch:
 
         Counter = collections.Counter(allwords)  # Pass the split_it list to instance of Counter class.
         most_occur = Counter.most_common(5)
-
-
         return most_occur
 
     @classmethod
@@ -83,8 +81,6 @@ class WordSearch:
             differenceInAttr = newAvg_attr-avg_attr
             new = int(differenceInAttr)
 
-
             return new
         else:
             return 0
-

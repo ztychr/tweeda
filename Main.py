@@ -225,6 +225,7 @@ def word_searching(listofpost, path):
 
     end_operation(listofpost, path)
 
+
 def word_counting(listofpost, path):
     result = WordSearch.word_counter(listofpost)
 
@@ -238,9 +239,11 @@ def word_counting(listofpost, path):
 
 def word_correlate(List, path):
 
-    print("type a certain word that you would like to see correlated with a tweets totalt impact (likes+replys+ retweet)\n"
+    print("\nType a certain word that you would like to see correlated with a tweets totalt impact (likes+replys+ retweet)\n"
           "This function will compare the total impact the tweets containing this word has, compared to the 'regular' impact \n \n")
+    print(30 * '-')
     choiceword = input("Enter your choice : ")
+    print(30 * '-')
 
     difference = WordSearch.word_correlation(List, choiceword)
     if difference == 0 or None:
