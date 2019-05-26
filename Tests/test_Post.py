@@ -13,14 +13,10 @@ class test_tweet(unittest.TestCase):
         self.aScrape.scrape_data()
         self.shortlist = self.aScrape.get_posts()
 
-
-
     def test_tweet(self):
         """
         Testing that scraping actually returns a 'Tweet' type
         """
-
-
 
         newTweet = self.shortlist[0]
 

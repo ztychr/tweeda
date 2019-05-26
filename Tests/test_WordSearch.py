@@ -12,7 +12,7 @@ class test_WordSearch(unittest.TestCase):
     def setUp(self):
         self.alist = []
         """
-        the lsit that we are testing on the word 'humtek' has been added many times as the most commen word.
+        the list that we are testing on the word 'humtek' has been added many times as the most commen word.
         The word 'is' has been added many times as well, but that should be sorted away
         The word 'DIKU' is used to check word_correlation
         """

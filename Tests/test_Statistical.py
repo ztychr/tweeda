@@ -73,4 +73,3 @@ class test_statistical(unittest.TestCase):
 
         sd = statistical.standard_deviation(self.alist, 'likes')
         self.assertEqual(sd, 4.17)
-

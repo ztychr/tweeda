@@ -74,11 +74,6 @@ class test_Sorting(unittest.TestCase):
         print("Bubblesort")
 
         Sorting.bubble_sort(self.postList, 'likes')
-
-
-
-
-
         print("Bubblesort test done")
 
     def test_quick_sort(self):
@@ -90,11 +85,8 @@ class test_Sorting(unittest.TestCase):
 
         lenlist = len(self.postList)
         Sorting.quick_sort(self.postList, 0, lenlist-1, 'likes')
-
-
-
-
         print("Quicksort test done")
+
     def test_bubble_sort1(self):
         """
         Testing functionality  for 'Bubblesort'
@@ -139,27 +131,3 @@ class test_Sorting(unittest.TestCase):
         self.assertEqual(self.shortlist[7].get_likes(), 8)
         self.assertEqual(self.shortlist[8].get_likes(), 9)
         self.assertEqual(self.shortlist[9].get_likes(), 10)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        
