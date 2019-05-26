@@ -3,7 +3,6 @@ import nltk.corpus
 from Statistical import statistical
 nltk.download('stopwords', quiet=True)
 from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
 nltk.download('punkt', quiet=True)
 
 """
@@ -18,7 +17,6 @@ class WordSearch:
     @:returns The amount of times that the given word appears in the given list
     """
     @classmethod
-
     def search_word(self, List, searchword):
         amounts = 0
         li = []
@@ -27,6 +25,7 @@ class WordSearch:
             if message.__contains__(searchword):
                 amounts = amounts + 1
         return amounts
+
     """
     @:param List: list of tweet-objects
     @:returns a tuple of the five most common words. Common words are left out
@@ -62,7 +61,6 @@ class WordSearch:
     @:param searchword: the word that is to be searched for
     @:returns the amount of total reactions more or less that posts containing this word is expected to have
     """
-
     @classmethod
     def word_correlation(self, List, searchWord):
         # Returns the average like of all posts

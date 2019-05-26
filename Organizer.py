@@ -101,7 +101,6 @@ class Organizer:
                 json.dump(listofdict, f)
 
     @classmethod
-
     def getpostList_Json(self):
         print(30 * '-')
         print("   D A T A - S T O R E D")
@@ -140,7 +139,6 @@ class Organizer:
 
     @classmethod
     def overwrite_file(self, path, list):
-        #C:\Users\Ejer\PycharmProjects\empty4git\tweeda/Jsondata_files/realdonaldtrump
         filename = ""
         newdata = []
 
@@ -165,9 +163,6 @@ class Organizer:
 
         with open(speecpath, "w") as f:
             json.dump(newdata, f)
-
-
-
 
     @classmethod
     def analysis_file(self, data, datatype, path):

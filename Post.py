@@ -49,7 +49,6 @@ class tweet:
     prints a whole list of tweets
     @:param listofposts. A list of tweets
     """
-
     @classmethod
     def print_tweetlist(self, listofposts):
         # method to print through a list of Tweets

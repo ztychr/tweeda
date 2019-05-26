@@ -11,7 +11,7 @@ The scraping class targets the individual div classes to find specific data abou
 class Scraping:
     """
     the constructor. intializes the name and amount of tweets.
-    r perfoms the HTTP-request
+    r performs the HTTP-request
     """
 
 class Scraping:
@@ -22,7 +22,7 @@ class Scraping:
         self.r = requests.get('https://twitter.com/' + tHandle)
 
     """
-    This method perfoms a scrape for the scrape object, and creates a list of tweets
+    This method performs a scrape for the scrape object, and creates a list of tweets
     """
     def scrape_data(self):
         # Scrapes our data. Needs to be run before any other methods are

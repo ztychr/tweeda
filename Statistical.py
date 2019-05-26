@@ -139,8 +139,6 @@ class statistical:
         # getting standard deviation of the dataset, uses get_average() from above.
         # standard deviation can later be used to provide further analysis
         listLen = len(List)
-        # calc of mean
-        # skal udskiftes med getAverage()
         average = self.get_average(List, attrs) # getting differences between data points and calculated average
         differences = []
         for i in range(0, listLen):

@@ -43,8 +43,6 @@ class Sorting:
         except:
             return print("the attribute you typed is not available for posts \n maybe you typed wrong?")
 
-
-
     """
     The partition method for quicksort. Partition puts all elements smaller than pivot to the left of it,
     and all others to the right

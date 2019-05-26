@@ -61,8 +61,6 @@ def scrape_menu():
         scrape_menu()
 
 
-
-
 def analyze_menu():
     postlist, path = Organizer.getpostList_Json()
 
