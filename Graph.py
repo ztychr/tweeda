@@ -15,11 +15,13 @@ def line_diagram(path, attr):
 
     user = final
     d = pd.read_json(user)
+    attr_name = str(attr)
     attr = d[attr]
     plt.plot(attr)
+    y_attr_name = ''.join([i for i in attr_name if not i.isdigit()])
 
     # Defining axes
     plt.xlabel("Posts")
-    plt.ylabel("Attributes")
+    plt.ylabel(y_attr_name)
     plt.title(str1)
     plt.show()
