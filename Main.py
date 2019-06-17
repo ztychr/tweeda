@@ -187,7 +187,7 @@ def sort_highlow(listofpost, path):
 
     Sorting.quick_sort(listofpost, 0, lenlist-1, attribute)
     Organizer.overwrite_file(path,listofpost)
-    line_diagram(path)
+    line_diagram(path,attribute)
 
     print(30 * '-')
     print("Sorting done. json-file overwritten with sorted dataset")

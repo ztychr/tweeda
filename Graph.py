@@ -3,7 +3,7 @@ import pandas as pd
 import os
 
 
-def line_diagram(path):
+def line_diagram(path, attr):
 
     files = os.listdir(path)
     for i in files:
@@ -15,11 +15,11 @@ def line_diagram(path):
 
     user = final
     d = pd.read_json(user)
-    likes = d['likes']
-    plt.plot(likes)
+    attr = d[attr]
+    plt.plot(attr)
 
     # Defining axes
     plt.xlabel("Posts")
-    plt.ylabel("Likes")
+    plt.ylabel("Attributes")
     plt.title(str1)
     plt.show()
