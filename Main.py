@@ -5,6 +5,7 @@ from Sorting import Sorting
 from Statistical import statistical
 from WordSearch import WordSearch
 from Probability import Probalility
+from Graph import line_diagram
 import sys  # sys.exit command to quit/logout of the application
 
 
@@ -186,6 +187,8 @@ def sort_highlow(listofpost, path):
 
     Sorting.quick_sort(listofpost, 0, lenlist-1, attribute)
     Organizer.overwrite_file(path,listofpost)
+    line_diagram(path)
+
     print(30 * '-')
     print("Sorting done. json-file overwritten with sorted dataset")
     print(30 * '-')

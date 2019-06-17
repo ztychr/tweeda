@@ -74,7 +74,6 @@ class Organizer:
                                                    "appending new data to file")
             outfile = os.path.join(path, twitterhandle + ".json")
 
-
             with open(outfile) as f:
                 listofdict = json.load(f)
 
