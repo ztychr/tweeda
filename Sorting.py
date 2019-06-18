@@ -26,10 +26,10 @@ class Sorting:
 
     """
     @classmethod
-    def bubble_sort(cls, List, attrs):
+    def bubble_sort(cls, List, attrs): #attribut besteme
         try:
             if attrs != 'message' and attrs != 'userName':
-                for i in range(0, len(List) - 1):
+                for i in range(0, len(List) - 1): # Hver gang en af disse iterationer er gennemført er det sidste element sorteret
 
                     for j in range(0, len(List) - 1 - i, 1):
                         attribute = getattr(List[j], attrs)
@@ -58,19 +58,19 @@ class Sorting:
         posPartitions = []
         middle = (low + high)// 2
         posPartitions.append(List[low])
-        posPartitions.append(List[middle])
+        posPartitions.append(List[middle]) # valg af omdrejningspunkt. ikke så vigtigt
         posPartitions.append(List[high])
         self.bubble_sort(posPartitions, attrs)
         pivot_value = statistical.get_median(posPartitions, attrs)
 
         if getattr(List[low], attrs) == pivot_value:
             pivot_index = low
-        elif getattr(List[middle], attrs) == pivot_value:
+        elif getattr(List[middle], attrs) == pivot_value: # også valg af omdrejningspunkt
             pivot_index = middle
         elif getattr(List[high], attrs) == pivot_value:
             pivot_index = high
 
-        self.swap(List, pivot_index, high)
+        self.swap(List, pivot_index, high) # vi sætter omdrejningspunktet i slutningen af listen
         i = low
         for j in range(low, high, 1):
 
@@ -93,8 +93,9 @@ class Sorting:
     @classmethod
     def quick_sort(self, List, low, high, attrs):
 
-        if low >= high:
+        if low >= high: # base case
             return List
-        pivot_index = self.partition(List, low, high, attrs)
-        self.quick_sort(List, low, pivot_index - 1, attrs)
-        self.quick_sort(List, pivot_index + 1, high, attrs)
+        pivot_index = self.partition(List, low, high, attrs) # vi bruger partition til at sortere,
+        #partition giver også det index som de næste to underlister er delt op i
+        self.quick_sort(List, low, pivot_index - 1, attrs) #sorterer øverst
+        self.quick_sort(List, pivot_index + 1, high, attrs)#sorterer nederst

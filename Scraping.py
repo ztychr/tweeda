@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import Post
 
 """
-The scraping class targets the individual div classes to find specific data about the tweets
+The scraping class targets the individual div classes to fin¨¨¨¨ specific data about the tweets
     appends the data to a tweet_list
 """
 
