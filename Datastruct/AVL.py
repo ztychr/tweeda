@@ -122,15 +122,19 @@ class AVLTree:
         if current.parent==None: return #base case, hvis vi befinder os ved root, som ikke har en paremnt
         path = [current]+path # vi smider current node ind i toppen (ligeom push)
 
+        print("rekur")
+
         leftHeight = self.get_height(current.parent.leftChild) # vi kigger på current node og dens søskende og tjeker deres højde fra bunden
         rightHeight = self.get_height(current.parent.rightChild)
 
         if abs(leftHeight - rightHeight)>1: # vi tjekker om der er balanceret
             path = [current.parent]+path
+            for i in path:
+                print("path", i.ID)
             self._rebalance_node(path[0],path[1],path[2])
             return
 
-        newHeight = 1 + current.height
+        newHeight = 1 + current.height # her bliver height genereret, hvis der altså ikke er sket nogen balancering
         if newHeight > current.parent.height:
             current.parent.height = newHeight
 
@@ -166,6 +170,7 @@ class AVLTree:
 
 
     def _rotate_right(self, z):
+        print("rotate")
         sub_root = z.parent
         y = z.leftChild
         t3 = y.rightChild
@@ -184,13 +189,16 @@ class AVLTree:
         z.height = 1 + max(self.get_height(z.leftChild), self.get_height(z.rightChild))
         y.height = 1 + max(self.get_height(y.leftChild),self.get_height(y.rightChild))
     def _rotate_left(self, z):
-        sub_root = z.parent
+        print("rotate")
+
+        sub_root = z.parent # vi sætter z's root s¨vi senere kan bruge den
         y = z.rightChild
-        t2 = y.leftChild
-        y.leftChild = z
-        z.parent = y
-        z.rightChild = t2
-        if t2 != None: t2.parent = z
+        t2 = y.leftChild # i tilfælde af at y allerede har et left child
+        y.leftChild = z #
+        z.parent = y # Når z er rykket til venstre vil dens parent være y
+        z.rightChild = t2 # hvis t2 er null, så passer det også fint
+        if t2 != None: # hvis y allerede har et leftchild, så sætter vi z imellem de to
+            t2.parent = z
         y.parent = sub_root
         if y.parent == None:
             self.root = y
@@ -199,9 +207,20 @@ class AVLTree:
                 y.parent.leftChild = y
             else:
                 y.parent.rightChild = y
-        z.height = 1 + max(self.get_height(z.leftChild),self.get_height(z.rightChild))
+        z.height = 1 + max(self.get_height(z.leftChild),self.get_height(z.rightChild)) # konfigurer height
         y.height = 1 + max(self.get_height(y.leftChild),self.get_height(y.rightChild))
     def get_height(self, current):
         if current == None: return 0
         return current.height
 
+some = AVLTree()
+
+some.insert(1)
+
+some.insert(2)
+print("from here")
+
+some.insert(3)
+
+
+print(some)

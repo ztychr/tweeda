@@ -1,6 +1,7 @@
 import json
 import os
 import Post
+from  Datastruct import AVL
 
 """
 The Organizer class creates a local directory
@@ -77,6 +78,9 @@ class Organizer:
             with open(outfile) as f:
                 listofdict = json.load(f)
 
+            IDtree = AVL.AVLTree()
+            IDtree.constructfromList(listofdict)
+
             for item in listofposts:
 
                 appendthis = True
@@ -90,9 +94,10 @@ class Organizer:
                     'message': all_attr[4],
                     'ID': all_attr[5]
                 }
-                for d in listofdict:
-                    if d['ID'] == dict['ID']:
-                        appendthis = False
+                # if tree.search == TRUe:
+                # BOOL = FALSE
+                if IDtree.search(dict['ID']):
+                    appendthis = False
                 if appendthis == True:
                     listofdict.append(dict)
 
