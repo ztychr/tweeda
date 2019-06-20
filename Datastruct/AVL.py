@@ -212,15 +212,3 @@ class AVLTree:
     def get_height(self, current):
         if current == None: return 0
         return current.height
-
-some = AVLTree()
-
-some.insert(1)
-
-some.insert(2)
-print("from here")
-
-some.insert(3)
-
-
-print(some)
